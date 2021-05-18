@@ -14,6 +14,9 @@
 		53B6C568B3D2EC584B0A7F96 /* libPods-Driplar-DriplarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 415B0BEC0A382C6CE83749F2 /* libPods-Driplar-DriplarTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		ECCC24631DAFBEFC73A0BCAD /* libPods-Driplar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3FF01D90076472B6D47A41 /* libPods-Driplar.a */; };
+		5139F61AC5AC44C5A3E5D486 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 62EA65EF946B4682AA38AFAA /* Metropolis-Bold.otf */; };
+		B140E5CE8DC1485EB965B033 /* Metropolis-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = CF453D96F50545B6AE94FCCB /* Metropolis-Medium.otf */; };
+		81A74BE988584CEE99089FC3 /* Metropolis-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC91246236403B959872C2 /* Metropolis-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,9 @@
 		8D3FF01D90076472B6D47A41 /* libPods-Driplar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Driplar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FC1BBD04FF1206B437AB4A58 /* Pods-Driplar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Driplar.release.xcconfig"; path = "Target Support Files/Pods-Driplar/Pods-Driplar.release.xcconfig"; sourceTree = "<group>"; };
+		62EA65EF946B4682AA38AFAA /* Metropolis-Bold.otf */ = {isa = PBXFileReference; name = "Metropolis-Bold.otf"; path = "../assets/fonts/Metropolis-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CF453D96F50545B6AE94FCCB /* Metropolis-Medium.otf */ = {isa = PBXFileReference; name = "Metropolis-Medium.otf"; path = "../assets/fonts/Metropolis-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8AFC91246236403B959872C2 /* Metropolis-Regular.otf */ = {isa = PBXFileReference; name = "Metropolis-Regular.otf"; path = "../assets/fonts/Metropolis-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +140,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				27ED60C5ECDA897C790BA816 /* Pods */,
+				3278C91E455347CFBC6D629E /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -148,6 +155,17 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		3278C91E455347CFBC6D629E /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				62EA65EF946B4682AA38AFAA /* Metropolis-Bold.otf */,
+				CF453D96F50545B6AE94FCCB /* Metropolis-Medium.otf */,
+				8AFC91246236403B959872C2 /* Metropolis-Regular.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +263,9 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				5139F61AC5AC44C5A3E5D486 /* Metropolis-Bold.otf in Resources */,
+				B140E5CE8DC1485EB965B033 /* Metropolis-Medium.otf in Resources */,
+				81A74BE988584CEE99089FC3 /* Metropolis-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
