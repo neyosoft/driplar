@@ -11,21 +11,17 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   useAnimatedScrollHandler,
+  interpolateColor,
 } from "react-native-reanimated";
 
 import theme from "../../../theme";
+import { SliderDot } from "./components";
 import { AppText } from "../../../components";
 import { BleytIcon, DriplarWelcomeIcon } from "../../../../assets/icons";
 
 export const Welcome = () => {
   const { width } = useWindowDimensions();
   const transX = useSharedValue(0);
-
-  const pagingStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: transX.value }],
-    };
-  });
 
   const scrollHandler = useAnimatedScrollHandler({
     onScroll: event => {
@@ -34,91 +30,104 @@ export const Welcome = () => {
   });
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+    <>
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="light-content" />
 
-      <View style={styles.topView}>
-        <View style={styles.pageIndicatorSection}>
-          <View style={styles.pageIndicator} />
-          <View style={styles.pageIndicator} />
-          <View style={styles.pageIndicator} />
+        <View style={styles.topView}>
+          <View style={styles.pageIndicatorSection}>
+            {[1, 2, 3].map((_, index) => {
+              return (
+                <SliderDot
+                  width={width}
+                  index={index}
+                  position={transX}
+                  key={`key-${index}`}
+                />
+              );
+            })}
+          </View>
+          <Animated.ScrollView
+            pagingEnabled={true}
+            horizontal={true}
+            scrollEventThrottle={1}
+            showsHorizontalScrollIndicator={false}
+            onScroll={scrollHandler}>
+            <View
+              style={[
+                { width, justifyContent: "center", alignItems: "center" },
+              ]}>
+              <DriplarWelcomeIcon />
+              <AppText variant="bold" style={styles.logoText}>
+                Driplar
+              </AppText>
+            </View>
+            <View
+              style={[
+                {
+                  width,
+                  backgroundColor: theme.colors.purple,
+                  justifyContent: "space-between",
+                },
+              ]}>
+              <View style={styles.pageHeader}>
+                <AppText variant="bold" style={styles.pageTitle}>
+                  Save and optimize your spending
+                </AppText>
+                <AppText style={styles.pageSubTitle}>
+                  Take control of your finances with tips on how to lower bills
+                  and be better with your savings.
+                </AppText>
+              </View>
+
+              <Image
+                height="400"
+                width={width}
+                style={{ width, height: 400 }}
+                source={require("../../../../assets/welcome-illustration-2.png")}
+              />
+            </View>
+            <View
+              style={[
+                {
+                  width,
+                  backgroundColor: theme.colors.purple,
+                  justifyContent: "space-between",
+                },
+              ]}>
+              <View style={styles.pageHeader}>
+                <AppText variant="bold" style={styles.pageTitle}>
+                  With insights made for you
+                </AppText>
+                <AppText style={styles.pageSubTitle}>
+                  Driplar analyzes your spending habits to help you keep a close
+                  eye on your finances.{" "}
+                </AppText>
+              </View>
+
+              <Image
+                height="400"
+                width={width}
+                style={{ width, height: 400 }}
+                source={require("../../../../assets/welcome-illustration-2.png")}
+              />
+            </View>
+          </Animated.ScrollView>
         </View>
-        <Animated.ScrollView
-          pagingEnabled={true}
-          horizontal={true}
-          scrollEventThrottle={1}
-          onScroll={scrollHandler}>
-          <View
-            style={[{ width, justifyContent: "center", alignItems: "center" }]}>
-            <DriplarWelcomeIcon />
-            <AppText variant="bold" style={styles.logoText}>
-              Driplar
+        <View style={styles.bottomView}>
+          <View style={styles.bleytBtn}>
+            <BleytIcon style={styles.bleytBtnIcon} />
+            <AppText variant="medium">Continue with Bleyt</AppText>
+          </View>
+          <View style={styles.appBtn}>
+            <AppText variant="medium" style={styles.appBtnText}>
+              Continue with Email
             </AppText>
           </View>
-          <View
-            style={[
-              {
-                width,
-                backgroundColor: theme.colors.purple,
-                justifyContent: "space-between",
-              },
-            ]}>
-            <View style={styles.pageHeader}>
-              <AppText variant="bold" style={styles.pageTitle}>
-                Save and optimize your spending
-              </AppText>
-              <AppText style={styles.pageSubTitle}>
-                Take control of your finances with tips on how to lower bills
-                and be better with your savings.
-              </AppText>
-            </View>
-
-            <Image
-              height="400"
-              width={width}
-              style={{ width, height: 400 }}
-              source={require("../../../../assets/welcome-illustration-2.png")}
-            />
-          </View>
-          <View
-            style={[
-              {
-                width,
-                backgroundColor: theme.colors.purple,
-                justifyContent: "space-between",
-              },
-            ]}>
-            <View style={styles.pageHeader}>
-              <AppText variant="bold" style={styles.pageTitle}>
-                With insights made for you
-              </AppText>
-              <AppText style={styles.pageSubTitle}>
-                Driplar analyzes your spending habits to help you keep a close
-                eye on your finances.{" "}
-              </AppText>
-            </View>
-
-            <Image
-              height="400"
-              width={width}
-              style={{ width, height: 400 }}
-              source={require("../../../../assets/welcome-illustration-2.png")}
-            />
-          </View>
-        </Animated.ScrollView>
-      </View>
-      <View style={styles.bottomView}>
-        <View style={styles.bleytBtn}>
-          <BleytIcon style={styles.bleytBtnIcon} />
-          <AppText variant="medium">Continue with Bleyt</AppText>
         </View>
-        <View style={styles.appBtn}>
-          <AppText variant="medium" style={styles.appBtnText}>
-            Continue with Email
-          </AppText>
-        </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+      <SafeAreaView style={{ backgroundColor: "#111926" }} />
+    </>
   );
 };
 
@@ -133,6 +142,11 @@ const styles = StyleSheet.create({
   pageIndicatorSection: {
     flexDirection: "row",
     justifyContent: "center",
+    position: "absolute",
+    right: 0,
+    left: 0,
+    top: 30,
+    zIndex: 1000,
   },
   pageIndicator: {
     width: 8,
@@ -176,6 +190,7 @@ const styles = StyleSheet.create({
   },
   pageHeader: {
     padding: 30,
+    marginTop: 50,
     paddingRight: 50,
   },
   pageTitle: {
