@@ -109,7 +109,7 @@ export const Welcome = () => {
                 height="400"
                 width={width}
                 style={{ width, height: 400 }}
-                source={require("../../../../assets/welcome-illustration-2.png")}
+                source={require("../../../../assets/welcome-illustration-3.png")}
               />
             </View>
           </Animated.ScrollView>
