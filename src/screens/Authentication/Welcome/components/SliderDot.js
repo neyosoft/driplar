@@ -13,8 +13,7 @@ export const SliderDot = ({ width, index, position }) => {
       backgroundColor: interpolateColor(
         position.value,
         [(index - 1) * width, index * width, (index + 1) * width],
-        ["rgb(255, 255, 255)", "rrgba(32, 30, 38, 0.75)", "rgb(255, 255, 255)"],
-        "RGB",
+        ["rgb(255, 255, 255)", "rgba(69, 64, 83, 0.75)", "rgb(255, 255, 255)"],
       ),
     };
   });
