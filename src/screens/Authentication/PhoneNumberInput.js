@@ -12,7 +12,7 @@ export const PhoneNumberInput = () => {
             <ScrollView contentContainerStyle={styles.scrollview}>
                 <View style={styles.topIconView}>
                     <TouchableOpacity>
-                        {/* <Icon name="chevron-left" size={30} style={styles.backIcon} color={theme.colors.primary} /> */}
+                        <Icon name="chevron-left" size={30} style={styles.backIcon} color={theme.colors.primary} />
                     </TouchableOpacity>
                 </View>
                 <AppText variant="medium" style={styles.pageTitle}>

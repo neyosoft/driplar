@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		149397E42658694300511A43 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14AB88BC2656B47B00CC96AC /* MaterialCommunityIcons.ttf */; };
 		5139F61AC5AC44C5A3E5D486 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 62EA65EF946B4682AA38AFAA /* Metropolis-Bold.otf */; };
 		53B6C568B3D2EC584B0A7F96 /* libPods-Driplar-DriplarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 415B0BEC0A382C6CE83749F2 /* libPods-Driplar-DriplarTests.a */; };
 		81A74BE988584CEE99089FC3 /* Metropolis-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC91246236403B959872C2 /* Metropolis-Regular.otf */; };
@@ -269,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				149397E42658694300511A43 /* MaterialCommunityIcons.ttf in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				5139F61AC5AC44C5A3E5D486 /* Metropolis-Bold.otf in Resources */,
