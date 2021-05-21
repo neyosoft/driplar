@@ -104,6 +104,7 @@ export const Welcome = () => {
                     </View>
                 </View>
             </SafeAreaView>
+
             <SafeAreaView style={{ backgroundColor: "#111926" }} />
         </>
     );

@@ -6,7 +6,7 @@ import { View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity } from "re
 import theme from "../../theme";
 import { AppText, Button } from "../../components";
 
-export const EmailRegistration = () => {
+export const NameInput = () => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollview}>
@@ -16,36 +16,23 @@ export const EmailRegistration = () => {
                     </TouchableOpacity>
                 </View>
                 <AppText variant="medium" style={styles.pageTitle}>
-                    Create an account
+                    Enter your name
                 </AppText>
 
                 <TextInput
-                    label="Email"
+                    label="First name"
+                    underlineColor={theme.colors.purple}
+                    theme={{ colors: { background: "#fff" } }}
+                />
+
+                <TextInput
+                    label="Last name"
                     style={styles.formGroup}
                     underlineColor={theme.colors.purple}
                     theme={{ colors: { background: "#fff" } }}
                 />
-                <TextInput
-                    label="Password"
-                    secureTextEntry={true}
-                    style={styles.formGroup}
-                    underlineColor={theme.colors.purple}
-                    right={<TextInput.Affix text="Show" />}
-                    theme={{ colors: { background: "#fff" } }}
-                />
 
-                <AppText style={styles.description}>
-                    By continuing, you agree to our <AppText variant="medium">terms of service</AppText> and
-                    <AppText variant="medium"> privacy policy</AppText>.
-                </AppText>
-
-                <Button label="Next" style={{ marginTop: 20 }} />
-
-                <View style={styles.existingAccountView}>
-                    <AppText>Already signed up?</AppText>
-
-                    <Button label="Log In" labelStyle={styles.loginLabelStyle} style={styles.loginBtn} />
-                </View>
+                <Button label="Next" style={styles.button} />
             </ScrollView>
         </SafeAreaView>
     );
@@ -60,9 +47,9 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     topIconView: {
+        marginLeft: -7,
         flexDirection: "row",
         justifyContent: "flex-start",
-        marginLeft: -7,
     },
     formGroup: {
         marginTop: 20,
@@ -71,23 +58,9 @@ const styles = StyleSheet.create({
         fontSize: 25,
         marginTop: 22,
         color: "#201E26",
-        marginBottom: 30,
+        marginBottom: 50,
     },
-    description: {
-        lineHeight: 20,
-        marginTop: 60,
-        fontSize: 13,
-    },
-    existingAccountView: {
+    button: {
         marginTop: 100,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-    },
-    loginBtn: {
-        backgroundColor: "#EEEDF4",
-    },
-    loginLabelStyle: {
-        color: theme.colors.text,
     },
 });
