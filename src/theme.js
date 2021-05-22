@@ -11,10 +11,11 @@ export default {
         yellow: "#E4BB6E",
         text: "#26232D",
         line: "#F0F0F0",
+        label: "#635F6F",
         placeholder: "#94909C",
     },
     radius: {
         sm: 5,
-        md: 10
+        md: 10,
     },
 };

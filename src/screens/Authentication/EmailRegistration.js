@@ -6,12 +6,12 @@ import { View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity } from "re
 import theme from "../../theme";
 import { AppText, Button } from "../../components";
 
-export const EmailRegistration = () => {
+export const EmailRegistration = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollview}>
                 <View style={styles.topIconView}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={navigation.goBack}>
                         <Icon name="chevron-left" size={30} style={styles.backIcon} color={theme.colors.primary} />
                     </TouchableOpacity>
                 </View>
@@ -39,12 +39,17 @@ export const EmailRegistration = () => {
                     <AppText variant="medium"> privacy policy</AppText>.
                 </AppText>
 
-                <Button label="Next" style={{ marginTop: 20 }} />
+                <Button label="Next" style={{ marginTop: 20 }} onPress={() => navigation.navigate("NameInput")} />
 
                 <View style={styles.existingAccountView}>
                     <AppText>Already signed up?</AppText>
 
-                    <Button label="Log In" labelStyle={styles.loginLabelStyle} style={styles.loginBtn} />
+                    <Button
+                        label="Log In"
+                        style={styles.loginBtn}
+                        labelStyle={styles.loginLabelStyle}
+                        onPress={() => navigation.navigate("Login")}
+                    />
                 </View>
             </ScrollView>
         </SafeAreaView>

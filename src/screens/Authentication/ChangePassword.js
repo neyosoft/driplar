@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
@@ -6,7 +6,10 @@ import { View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity } from "re
 import theme from "../../theme";
 import { AppText, Button } from "../../components";
 
-export const NameInput = ({ navigation }) => {
+export const ChangePassword = ({ navigation }) => {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollview}>
@@ -16,23 +19,42 @@ export const NameInput = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <AppText variant="medium" style={styles.pageTitle}>
-                    Enter your name
+                    Change your password
                 </AppText>
 
                 <TextInput
-                    label="First name"
+                    label="New Password"
+                    secureTextEntry={true}
+                    style={styles.formGroup}
+                    placeholder="Enter new password"
                     underlineColor={theme.colors.purple}
                     theme={{ colors: { background: "#fff" } }}
+                    right={
+                        <TextInput.Icon
+                            color={theme.colors.label}
+                            name={showPassword ? "eye" : "eye-off"}
+                            onPress={() => setShowPassword(status => !status)}
+                        />
+                    }
                 />
 
                 <TextInput
-                    label="Last name"
+                    label="Confirm Password"
+                    secureTextEntry={true}
                     style={styles.formGroup}
+                    placeholder="Confirm new password"
                     underlineColor={theme.colors.purple}
+                    right={
+                        <TextInput.Icon
+                            color={theme.colors.label}
+                            name={showConfirmPassword ? "eye" : "eye-off"}
+                            onPress={() => setShowConfirmPassword(status => !status)}
+                        />
+                    }
                     theme={{ colors: { background: "#fff" } }}
                 />
 
-                <Button label="Next" style={styles.button} onPress={() => navigation.navigate("PhoneNumberInput")} />
+                <Button label="Confirm" style={styles.button} onPress={() => navigation.navigate("ChangePassword")} />
             </ScrollView>
         </SafeAreaView>
     );
@@ -61,6 +83,6 @@ const styles = StyleSheet.create({
         marginBottom: 50,
     },
     button: {
-        marginTop: 100,
+        marginTop: 30,
     },
 });

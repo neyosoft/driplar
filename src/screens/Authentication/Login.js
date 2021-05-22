@@ -6,7 +6,7 @@ import { View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity } from "re
 import theme from "../../theme";
 import { AppText, Button } from "../../components";
 
-export const NameInput = ({ navigation }) => {
+export const Login = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView contentContainerStyle={styles.scrollview}>
@@ -16,23 +16,42 @@ export const NameInput = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <AppText variant="medium" style={styles.pageTitle}>
-                    Enter your name
+                    Log in to Driplar
                 </AppText>
 
                 <TextInput
-                    label="First name"
-                    underlineColor={theme.colors.purple}
-                    theme={{ colors: { background: "#fff" } }}
-                />
-
-                <TextInput
-                    label="Last name"
+                    label="Email"
                     style={styles.formGroup}
                     underlineColor={theme.colors.purple}
                     theme={{ colors: { background: "#fff" } }}
                 />
+                <TextInput
+                    label="Password"
+                    secureTextEntry={true}
+                    style={styles.formGroup}
+                    underlineColor={theme.colors.purple}
+                    right={<TextInput.Affix text="Show" />}
+                    theme={{ colors: { background: "#fff" } }}
+                />
 
-                <Button label="Next" style={styles.button} onPress={() => navigation.navigate("PhoneNumberInput")} />
+                <View style={styles.forgetPasswordView}>
+                    <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}>
+                        <AppText variant="medium">Forget Password</AppText>
+                    </TouchableOpacity>
+                </View>
+
+                <Button label="Log In" style={styles.button} onPress={() => navigation.navigate("PhoneNumberInput")} />
+
+                <View style={styles.newAccountRow}>
+                    <AppText>Don’t have an account?</AppText>
+
+                    <Button
+                        label="Sign up"
+                        style={styles.signupBtn}
+                        labelStyle={styles.signupLabelStyle}
+                        onPress={() => navigation.navigate("EmailRegistration")}
+                    />
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
@@ -60,7 +79,23 @@ const styles = StyleSheet.create({
         color: "#201E26",
         marginBottom: 50,
     },
+    forgetPasswordView: {
+        marginTop: 60,
+        flexDirection: "row",
+    },
     button: {
+        marginTop: 30,
+    },
+    newAccountRow: {
         marginTop: 100,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    signupBtn: {
+        backgroundColor: "#EEEDF4",
+    },
+    signupLabelStyle: {
+        color: theme.colors.text,
     },
 });

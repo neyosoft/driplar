@@ -6,7 +6,7 @@ import { View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, TextInput
 import theme from "../../theme";
 import { AppText, Button } from "../../components";
 
-export const PhoneNumberInput = ({ navigation }) => {
+export const PasswordRestOTPVerification = ({ navigation }) => {
     const [country, setCountry] = useState(null);
 
     return (
@@ -19,7 +19,7 @@ export const PhoneNumberInput = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                     <AppText variant="medium" style={styles.pageTitle}>
-                        Enter your phone number
+                        Enter the 5-digit code we sent
                     </AppText>
 
                     <View style={styles.form}>
@@ -46,12 +46,11 @@ export const PhoneNumberInput = ({ navigation }) => {
                             </View>
                         </View>
                     </View>
-
-                    <AppText style={styles.note}>
-                        By continuing, you will receive an SMS to verify your phone number.
+                    <AppText variant="medium" style={styles.emailOption}>
+                        Resend code
                     </AppText>
 
-                    <Button label="Next" style={styles.button} />
+                    <Button label="Next" style={styles.button} onPress={() => navigation.navigate("ChangePassword")} />
                 </ScrollView>
             </CountryModalProvider>
         </SafeAreaView>
@@ -80,8 +79,8 @@ const styles = StyleSheet.create({
         color: "#201E26",
     },
     form: {
-        marginVertical: 50,
         marginBottom: 150,
+        marginVertical: 50,
     },
     phoneInputView: {
         padding: 10,
@@ -96,8 +95,9 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: theme.colors.placeholder,
     },
-    note: {
-        lineHeight: 20,
+    emailOption: {
+        marginTop: 20,
+        fontSize: 13,
         color: theme.colors.label,
     },
     button: {

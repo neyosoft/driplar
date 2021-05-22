@@ -6,7 +6,7 @@ import { View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, TextInput
 import theme from "../../theme";
 import { AppText, Button } from "../../components";
 
-export const PhoneNumberInput = ({ navigation }) => {
+export const ForgetPassword = ({ navigation }) => {
     const [country, setCountry] = useState(null);
 
     return (
@@ -19,7 +19,7 @@ export const PhoneNumberInput = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                     <AppText variant="medium" style={styles.pageTitle}>
-                        Enter your phone number
+                        Reset your password
                     </AppText>
 
                     <View style={styles.form}>
@@ -45,13 +45,20 @@ export const PhoneNumberInput = ({ navigation }) => {
                                 />
                             </View>
                         </View>
+                        <AppText variant="medium" style={styles.emailOption}>
+                            Use email address
+                        </AppText>
                     </View>
 
                     <AppText style={styles.note}>
-                        By continuing, you will receive an SMS to verify your phone number.
+                        A 5-digit code will be sent to your phone number to enable you change your password.{" "}
                     </AppText>
 
-                    <Button label="Next" style={styles.button} />
+                    <Button
+                        label="Next"
+                        style={styles.button}
+                        onPress={() => navigation.navigate("PasswordRestOTPVerification")}
+                    />
                 </ScrollView>
             </CountryModalProvider>
         </SafeAreaView>
@@ -96,7 +103,13 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: theme.colors.placeholder,
     },
+    emailOption: {
+        marginTop: 20,
+        fontSize: 13,
+        color: theme.colors.label,
+    },
     note: {
+        fontSize: 13,
         lineHeight: 20,
         color: theme.colors.label,
     },

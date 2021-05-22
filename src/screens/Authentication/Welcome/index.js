@@ -4,10 +4,10 @@ import Animated, { useSharedValue, useAnimatedScrollHandler } from "react-native
 
 import theme from "../../../theme";
 import { SliderDot } from "./components";
-import { AppText } from "../../../components";
+import { AppText, Button } from "../../../components";
 import { BleytIcon, DriplarWelcomeIcon } from "../../../../assets/icons";
 
-export const Welcome = () => {
+export const Welcome = ({ navigation }) => {
     const transX = useSharedValue(0);
     const { width } = useWindowDimensions();
 
@@ -69,8 +69,8 @@ export const Welcome = () => {
                             style={[
                                 {
                                     width,
+                                    justifyContent: "space-between",
                                     backgroundColor: theme.colors.purple,
-                                    // justifyContent: "space-between",
                                 },
                             ]}>
                             <View style={styles.pageHeader}>
@@ -83,10 +83,10 @@ export const Welcome = () => {
                             </View>
 
                             <Image
-                                height="200"
+                                height="300"
                                 width={width}
                                 resizeMode="stretch"
-                                style={{ width, height: 500, borderWidth: 4 }}
+                                style={{ width, height: 300 }}
                                 source={require("../../../../assets/welcome-illustration-3.png")}
                             />
                         </View>
@@ -97,11 +97,12 @@ export const Welcome = () => {
                         <BleytIcon style={styles.bleytBtnIcon} />
                         <AppText variant="medium">Continue with Bleyt</AppText>
                     </View>
-                    <View style={styles.appBtn}>
-                        <AppText variant="medium" style={styles.appBtnText}>
-                            Continue with Email
-                        </AppText>
-                    </View>
+
+                    <Button
+                        style={{ marginTop: 10 }}
+                        label="Continue with Email"
+                        onPress={() => navigation.navigate("EmailRegistration")}
+                    />
                 </View>
             </SafeAreaView>
 
@@ -155,17 +156,6 @@ const styles = StyleSheet.create({
         top: 10,
         left: 23,
         position: "absolute",
-    },
-    appBtn: {
-        padding: 15,
-        marginTop: 10,
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: theme.radius.md,
-        backgroundColor: theme.colors.primary,
-    },
-    appBtnText: {
-        color: theme.colors.white,
     },
     pageHeader: {
         padding: 30,
