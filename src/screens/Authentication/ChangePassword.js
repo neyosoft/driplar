@@ -31,6 +31,7 @@ export const ChangePassword = ({ navigation }) => {
                     theme={{ colors: { background: "#fff" } }}
                     right={
                         <TextInput.Icon
+                            style={{ marginLeft: 5 }}
                             color={theme.colors.label}
                             name={showPassword ? "eye" : "eye-off"}
                             onPress={() => setShowPassword(status => !status)}
@@ -39,13 +40,14 @@ export const ChangePassword = ({ navigation }) => {
                 />
 
                 <TextInput
-                    label="Confirm Password"
                     secureTextEntry={true}
+                    label="Confirm Password"
                     style={styles.formGroup}
                     placeholder="Confirm new password"
                     underlineColor={theme.colors.purple}
                     right={
                         <TextInput.Icon
+                            style={{ marginLeft: 5 }}
                             color={theme.colors.label}
                             name={showConfirmPassword ? "eye" : "eye-off"}
                             onPress={() => setShowConfirmPassword(status => !status)}

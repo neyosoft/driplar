@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CountryPicker, { CountryModalProvider } from "react-native-country-picker-modal";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { View, StyleSheet, ScrollView, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
+import OTPInputView from "@twotalltotems/react-native-otp-input";
 
 import theme from "../../theme";
 import { AppText, Button } from "../../components";
@@ -23,28 +24,16 @@ export const PasswordRestOTPVerification = ({ navigation }) => {
                     </AppText>
 
                     <View style={styles.form}>
-                        <View style={styles.phoneInputView}>
-                            <AppText style={styles.phoneLabel}>Phone number</AppText>
-                            <View style={styles.inputRow}>
-                                <CountryPicker
-                                    withFlag={true}
-                                    withFilter={true}
-                                    onSelect={setCountry}
-                                    preferredCountries={["NG"]}
-                                    countryCode={country ? country.cca2 : "NG"}
-                                />
-                                <Icon
-                                    name="menu-down"
-                                    size={25}
-                                    color="#8B8B8D"
-                                    style={{ marginLeft: -10, marginRight: 5 }}
-                                />
-                                <TextInput
-                                    placeholder="0809 876 4678"
-                                    style={{ flex: 1, fontSize: 18, fontFamily: "Metropolis-Medium" }}
-                                />
-                            </View>
-                        </View>
+                        <OTPInputView
+                            pinCount={6}
+                            editable={true}
+                            style={{ height: 100 }}
+                            autoFocusOnLoad={true}
+                            keyboardType="phone-pad"
+                            codeInputFieldStyle={styles.codeInputStyle}
+                            codeInputHighlightStyle={styles.codeInputStyle}
+                            onCodeFilled={code => console.log("The code is: ", code)}
+                        />
                     </View>
                     <AppText variant="medium" style={styles.emailOption}>
                         Resend code
@@ -91,9 +80,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
     },
-    phoneLabel: {
-        fontSize: 13,
-        color: theme.colors.placeholder,
+    codeInputStyle: {
+        color: "#000",
+        fontSize: 20,
+        backgroundColor: "#F8F7F8",
     },
     emailOption: {
         marginTop: 20,
