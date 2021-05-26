@@ -1,38 +1,51 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { ProductIcon } from "../../../../../assets/icons";
+import { View, StyleSheet, Image } from "react-native";
 
 import theme from "../../../../theme";
 import { AppText } from "../../../../components";
+import { moneyFormat } from "../../../../utils/money.utils";
 
 export const RecordCard = ({ style, onPress, icon, title, description, amount }) => {
     return (
         <View style={[styles.container, style]}>
-            <ProductIcon />
+            <Image source={icon} style={styles.image} />
             <View style={styles.centerView}>
-                <AppText style={styles.title}>Home</AppText>
-                <AppText style={styles.description}>7 transactions - 60% of income</AppText>
+                <AppText variant="medium" style={styles.title}>
+                    {title}
+                </AppText>
+                <AppText style={styles.description}>{description}</AppText>
             </View>
-            <AppText style={styles.amount}>N 127,568</AppText>
+            <AppText variant="medium" style={styles.amount}>
+                {moneyFormat(amount)}
+            </AppText>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
+        padding: 10,
         flexDirection: "row",
         alignItems: "center",
+        borderBottomWidth: 0.5,
+        borderBottomColor: "#F0F0F0",
         justifyContent: "space-between",
+    },
+    image: {
+        width: 50,
+        height: 50,
     },
     centerView: {
         flex: 1,
         marginHorizontal: 13,
     },
     title: {
+        fontSize: 14,
         color: theme.colors.primary,
     },
     description: {
         marginTop: 5,
+        fontSize: 11,
         color: theme.colors.placeholder,
     },
     amount: {

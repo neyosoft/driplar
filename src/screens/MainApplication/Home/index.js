@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, SafeAreaView, Image, ImageBackground, ScrollView } from "react-native";
+import { View, StyleSheet, SafeAreaView, ImageBackground, ScrollView } from "react-native";
 
 import BalanceBGImage from "../../../../assets/balance-bg.png";
 
@@ -7,6 +7,12 @@ import theme from "../../../theme";
 import { Header, RecordCard } from "./components";
 import { AppText } from "../../../components";
 import { AmountInfoIcon } from "../../../../assets/icons";
+
+import UberLogo from "../../../../assets/UberLogo.png";
+import NetlifyLogo from "../../../../assets/NetlifyLogo.png";
+import SpotifyLogo from "../../../../assets/SpotifyLogo.png";
+import ProductImage from "../../../../assets/ProductImageOne.png";
+import TransportCategoryIcon from "../../../../assets/TransportCategoryIcon.png";
 
 export const Home = () => {
     return (
@@ -25,13 +31,27 @@ export const Home = () => {
                     <AmountInfoIcon style={styles.infoIcon} />
                 </ImageBackground>
             </View>
-            <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+            <ScrollView>
                 <View style={styles.recordCardHeader}>
                     <AppText variant="medium" styles={styles.cardTitle}>
                         Spending watchlist
                     </AppText>
                 </View>
-                <RecordCard />
+
+                <RecordCard
+                    amount={127500}
+                    title="Shopping"
+                    icon={ProductImage}
+                    style={styles.cardItem}
+                    description="7 transactions - 60% of income"
+                />
+                <RecordCard
+                    amount={42500}
+                    title="Transport"
+                    style={styles.cardItem}
+                    icon={TransportCategoryIcon}
+                    description="26 transactions - 15% of income"
+                />
 
                 <View style={styles.recordCardHeader}>
                     <AppText variant="medium" styles={styles.cardTitle}>
@@ -42,13 +62,100 @@ export const Home = () => {
                         Show all
                     </AppText>
                 </View>
-                <RecordCard style={styles.cardItem} />
-                <RecordCard style={styles.cardItem} />
-                <RecordCard style={styles.cardItem} />
-                <RecordCard style={styles.cardItem} />
-                <RecordCard style={styles.cardItem} />
-                <RecordCard style={styles.cardItem} />
-                <RecordCard style={styles.cardItem} />
+
+                <View style={styles.itemWrapper}>
+                    <RecordCard
+                        amount={2500}
+                        title="Netflix"
+                        icon={NetlifyLogo}
+                        description="April 7"
+                        style={styles.cardItem}
+                    />
+                    <RecordCard
+                        amount={3500}
+                        title="Spotify"
+                        icon={SpotifyLogo}
+                        description="Jan 12"
+                        style={styles.cardItem}
+                    />
+                    <RecordCard
+                        icon={UberLogo}
+                        title="Uber"
+                        description="Jan 12"
+                        amount={3500}
+                        style={styles.cardItem}
+                    />
+                    <RecordCard
+                        amount={3500}
+                        title="Internet"
+                        icon={ProductImage}
+                        description="Jan 12"
+                        style={styles.cardItem}
+                    />
+                </View>
+
+                <View style={styles.recordCardHeader}>
+                    <AppText variant="medium" styles={styles.cardTitle}>
+                        New deals in your favourite categories
+                    </AppText>
+                </View>
+
+                <View style={styles.itemWrapper}>
+                    <RecordCard
+                        amount={2500}
+                        title="Netflix"
+                        icon={NetlifyLogo}
+                        description="April 7"
+                        style={styles.cardItem}
+                    />
+                    <RecordCard
+                        amount={3500}
+                        title="Spotify"
+                        icon={SpotifyLogo}
+                        description="Jan 12"
+                        style={styles.cardItem}
+                    />
+                </View>
+
+                <View style={styles.recordCardHeader}>
+                    <AppText variant="medium" styles={styles.cardTitle}>
+                        Categorize these transactions
+                    </AppText>
+                    <AppText variant="medium" styles={styles.cardShowAll}>
+                        Show all
+                    </AppText>
+                </View>
+
+                <View style={styles.itemWrapper}>
+                    <RecordCard
+                        amount={2500}
+                        title="Netflix"
+                        icon={NetlifyLogo}
+                        description="April 7"
+                        style={styles.cardItem}
+                    />
+                    <RecordCard
+                        amount={3500}
+                        title="Spotify"
+                        icon={SpotifyLogo}
+                        description="Jan 12"
+                        style={styles.cardItem}
+                    />
+                    <RecordCard
+                        icon={UberLogo}
+                        title="Uber"
+                        description="Jan 12"
+                        amount={3500}
+                        style={styles.cardItem}
+                    />
+                    <RecordCard
+                        amount={3500}
+                        title="Internet"
+                        icon={ProductImage}
+                        description="Jan 12"
+                        style={styles.cardItem}
+                    />
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
@@ -97,12 +204,10 @@ const styles = StyleSheet.create({
         bottom: 20,
         position: "absolute",
     },
-    contentContainerStyle: {
-        padding: 10,
-    },
     recordCardHeader: {
+        margin: 10,
         marginTop: 20,
-        marginBottom: 10,
+        marginHorizontal: 20,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
@@ -114,7 +219,11 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: theme.colors.label,
     },
-    cardItem: {
-        marginTop: 10,
+    itemWrapper: {
+        borderWidth: 0.5,
+        borderColor: "#DCDBDB",
+        borderRadius: theme.radius.md,
+        marginHorizontal: 10,
     },
+    cardItem: {},
 });
