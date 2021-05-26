@@ -1,6 +1,7 @@
 export default {
     colors: {
         white: "#fff",
+        black: "#000",
         offWhite: "#FEFEFF",
         primary: "#201E26",
         purple: "#9C88EE",
