@@ -7,7 +7,7 @@ const Stack = createStackNavigator();
 
 const MainApplicationNavigator = () => {
     return (
-        <Stack.Navigator initialRouteName="Home" headerMode="none">
+        <Stack.Navigator initialRouteName="LinkAccount" headerMode="none">
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="LinkAccount" component={LinkAccount} />
         </Stack.Navigator>

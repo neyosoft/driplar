@@ -6,7 +6,7 @@ import { AppText } from "../../../../components";
 export const Header = () => {
     return (
         <View style={styles.container}>
-            <AppText variant="medium" style={styles.homeLabel}>
+            <AppText variant="bold" style={styles.homeLabel}>
                 Home
             </AppText>
             <Image source={require("../../../../../assets/avatar.png")} style={styles.avatar} />
@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         paddingHorizontal: 22,
+        marginTop: 15,
         justifyContent: "space-between",
     },
     homeLabel: {
