@@ -1,12 +1,12 @@
 import React from "react";
-import { View, StyleSheet, SafeAreaView, ImageBackground, ScrollView } from "react-native";
+import { View, StyleSheet, SafeAreaView, ImageBackground, ScrollView, Image } from "react-native";
 
 import BalanceBGImage from "../../../../assets/balance-bg.png";
 
 import theme from "../../../theme";
 import { Header, RecordCard } from "./components";
 import { AppText } from "../../../components";
-import { AmountInfoIcon } from "../../../../assets/icons";
+import { AmountInfoIcon, CategoryThree } from "../../../../assets/icons";
 
 import UberLogo from "../../../../assets/UberLogo.png";
 import NetlifyLogo from "../../../../assets/NetlifyLogo.png";
@@ -33,7 +33,7 @@ export const Home = () => {
             </View>
             <ScrollView>
                 <View style={styles.recordCardHeader}>
-                    <AppText variant="medium" styles={styles.cardTitle}>
+                    <AppText variant="bold" styles={styles.cardTitle}>
                         Spending watchlist
                     </AppText>
                 </View>
@@ -54,7 +54,7 @@ export const Home = () => {
                 />
 
                 <View style={styles.recordCardHeader}>
-                    <AppText variant="medium" styles={styles.cardTitle}>
+                    <AppText variant="bold" styles={styles.cardTitle}>
                         Recent payments
                     </AppText>
 
@@ -95,30 +95,21 @@ export const Home = () => {
                 </View>
 
                 <View style={styles.recordCardHeader}>
-                    <AppText variant="medium" styles={styles.cardTitle}>
+                    <AppText variant="bold" styles={styles.cardTitle}>
                         New deals in your favourite categories
                     </AppText>
                 </View>
 
-                <View style={styles.itemWrapper}>
-                    <RecordCard
-                        amount={2500}
-                        title="Netflix"
-                        icon={NetlifyLogo}
-                        description="April 7"
-                        style={styles.cardItem}
-                    />
-                    <RecordCard
-                        amount={3500}
-                        title="Spotify"
-                        icon={SpotifyLogo}
-                        description="Jan 12"
-                        style={styles.cardItem}
-                    />
+                <View style={{ marginVertical: 10, paddingHorizontal: 20 }}>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <Image source={require("../../../../assets/category-one.png")} style={styles.categoryItem} />
+                        <Image source={require("../../../../assets/category-two.png")} style={styles.categoryItem} />
+                        <CategoryThree />
+                    </ScrollView>
                 </View>
 
                 <View style={styles.recordCardHeader}>
-                    <AppText variant="medium" styles={styles.cardTitle}>
+                    <AppText variant="bold" styles={styles.cardTitle}>
                         Categorize these transactions
                     </AppText>
                     <AppText variant="medium" styles={styles.cardShowAll}>
@@ -226,4 +217,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     cardItem: {},
+    categoryItem: {
+        marginRight: 8,
+    },
 });
