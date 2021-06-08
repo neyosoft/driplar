@@ -1,4 +1,5 @@
 import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AuthNavigator from "./navigation";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
@@ -23,9 +24,11 @@ const theme = {
 
 const App = () => {
     return (
-        <PaperProvider theme={theme}>
-            <AuthNavigator />
-        </PaperProvider>
+        <SafeAreaProvider>
+            <PaperProvider theme={theme}>
+                <AuthNavigator />
+            </PaperProvider>
+        </SafeAreaProvider>
     );
 };
 

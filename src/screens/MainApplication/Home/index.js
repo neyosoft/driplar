@@ -1,28 +1,31 @@
 import React from "react";
-import { View, StyleSheet, SafeAreaView, ImageBackground, ScrollView, Image } from "react-native";
-
-import BalanceBGImage from "../../../../assets/balance-bg.png";
+import { View, Image, ScrollView, StyleSheet, Dimensions, ImageBackground, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import theme from "../../../theme";
-import { Header, RecordCard } from "./components";
 import { AppText } from "../../../components";
-import { AmountInfoIcon, CategoryThree } from "../../../../assets/icons";
+import { Header, RecordCard } from "./components";
+import { AmountInfoIcon } from "../../../../assets/icons";
+import BalanceBGImage from "../../../../assets/balance-bg.png";
 
 import UberLogo from "../../../../assets/UberLogo.png";
+import { moneyFormat } from "../../../utils/money.utils";
 import NetlifyLogo from "../../../../assets/NetlifyLogo.png";
 import SpotifyLogo from "../../../../assets/SpotifyLogo.png";
 import ProductImage from "../../../../assets/ProductImageOne.png";
 import TransportCategoryIcon from "../../../../assets/TransportCategoryIcon.png";
 
-export const Home = () => {
+const { width } = Dimensions.get("window");
+
+export const Home = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
             <Header />
-            <View style={styles.balanceView}>
+            <TouchableOpacity style={styles.balanceView} onPress={() => navigation.navigate("Overview")}>
                 <ImageBackground source={BalanceBGImage} style={styles.balanceImage}>
                     <View style={styles.amountWrapper}>
                         <AppText variant="bold" style={styles.balanceAmountStyle}>
-                            N 630,390
+                            {moneyFormat(630390)}
                         </AppText>
                         <AppText variant="medium" style={styles.amountDescriptionStyle}>
                             Total balance - 5 mins ago
@@ -30,7 +33,7 @@ export const Home = () => {
                     </View>
                     <AmountInfoIcon style={styles.infoIcon} />
                 </ImageBackground>
-            </View>
+            </TouchableOpacity>
             <ScrollView>
                 <View style={styles.recordCardHeader}>
                     <AppText variant="bold" styles={styles.cardTitle}>
@@ -55,7 +58,7 @@ export const Home = () => {
 
                 <View style={styles.recordCardHeader}>
                     <AppText variant="bold" styles={styles.cardTitle}>
-                        Recent payments
+                        Upcoming payments
                     </AppText>
 
                     <AppText variant="medium" styles={styles.cardShowAll}>
@@ -78,6 +81,18 @@ export const Home = () => {
                         description="Jan 12"
                         style={styles.cardItem}
                     />
+                </View>
+                <View style={styles.recordCardHeader}>
+                    <AppText variant="bold" styles={styles.cardTitle}>
+                        Recent payments
+                    </AppText>
+
+                    <AppText variant="medium" styles={styles.cardShowAll}>
+                        Show all
+                    </AppText>
+                </View>
+
+                <View style={styles.itemWrapper}>
                     <RecordCard
                         icon={UberLogo}
                         title="Uber"
@@ -102,9 +117,22 @@ export const Home = () => {
 
                 <View style={{ marginVertical: 10, paddingHorizontal: 20 }}>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <Image source={require("../../../../assets/category-one.png")} style={styles.categoryItem} />
-                        <Image source={require("../../../../assets/category-two.png")} style={styles.categoryItem} />
-                        <CategoryThree />
+                        <Image
+                            style={styles.categoryItem}
+                            source={require("../../../../assets/category-eating-out.png")}
+                        />
+                        <Image
+                            style={styles.categoryItem}
+                            source={require("../../../../assets/category-groceries.png")}
+                        />
+                        <Image
+                            style={styles.categoryItem}
+                            source={require("../../../../assets/category-bank-charges.png")}
+                        />
+                        <Image
+                            style={styles.categoryItem}
+                            source={require("../../../../assets/category-transfers.png")}
+                        />
                     </ScrollView>
                 </View>
 
@@ -219,5 +247,7 @@ const styles = StyleSheet.create({
     cardItem: {},
     categoryItem: {
         marginRight: 8,
+        width: width / 2.5,
+        height: width / 4,
     },
 });
