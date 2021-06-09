@@ -5,8 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import theme from "../../../theme";
 import { AppText } from "../../../components";
 import { Header, RecordCard } from "./components";
-import { AmountInfoIcon } from "../../../../assets/icons";
 import BalanceBGImage from "../../../../assets/balance-bg.png";
+import { AmountInfoIcon } from "../../../../assets/icons";
 
 import UberLogo from "../../../../assets/UberLogo.png";
 import { moneyFormat } from "../../../utils/money.utils";
