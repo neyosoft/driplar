@@ -6,7 +6,18 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import theme from "../../../theme";
 import { BankIcon } from "../../../../assets/icons";
 import { AppText, Button } from "../../../components";
-import { AccountCard } from "./components/AccountCard";
+import { FcmbCard, GTBankCard, CowrywiseCard } from "./components";
+
+const renderCard = name => {
+    switch (name) {
+        case "FCMB":
+            return <FcmbCard />;
+        case "GTBank":
+            return <GTBankCard />;
+        case "Cowrywise":
+            return <CowrywiseCard />;
+    }
+};
 
 export const Accounts = () => {
     const [list, setList] = useState([]);
@@ -25,23 +36,7 @@ export const Accounts = () => {
                 <Button
                     label="Link bank accounts"
                     onPress={() => {
-                        setList([
-                            {
-                                name: "FCMB",
-                                backgroundColor: "#D292FF",
-                                icon: "Hello",
-                            },
-                            {
-                                name: "Cowrywise",
-                                backgroundColor: "#97C2FF",
-                                icon: "Hello",
-                            },
-                            {
-                                name: "GTBank",
-                                backgroundColor: "#FFA775",
-                                icon: "Hello",
-                            },
-                        ]);
+                        setList(["FCMB", "GTBank", "Cowrywise"]);
                     }}
                 />
             </View>
@@ -63,9 +58,12 @@ export const Accounts = () => {
                 </View>
 
                 <FlatList
-                    numColumns={2}
                     data={list}
-                    renderItem={({ item }) => <AccountCard {...item} style={{ width: 170 }} />}
+                    numColumns={2}
+                    style={styles.flatlist}
+                    renderItem={({ item }) => renderCard(item)}
+                    keyExtractor={(_, index) => `index-${index}`}
+                    columnWrapperStyle={{ justifyContent: "space-between", marginBottom: 10 }}
                 />
             </View>
         </SafeAreaView>
@@ -77,17 +75,20 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: theme.colors.white,
     },
-    content: {
-        padding: 20,
-    },
     header: {
         marginBottom: 10,
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "space-between",
     },
+    content: {
+        padding: 20,
+    },
     title: {
         fontSize: 22,
+    },
+    flatlist: {
+        marginTop: 20,
     },
     noAccountView: {
         flex: 1,
