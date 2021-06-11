@@ -2,11 +2,20 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Home, LinkAccount, Overview, Accounts } from "../screens/MainApplication";
+import { Home, LinkAccount, Overview } from "../screens/MainApplication";
 import { AccountIcon, AccountInactiveIcon, HomeIcon, HomeInactiveIcon } from "../../assets/icons";
+
+import { AccountList, AccountInformation } from "../screens/MainApplication/Accounts";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+const AccountNavigation = () => (
+    <Stack.Navigator initialRouteName="AccountList" headerMode="none">
+        <Stack.Screen name="AccountList" component={AccountList} />
+        <Stack.Screen name="AccountInformation" component={AccountInformation} />
+    </Stack.Navigator>
+);
 
 const HomeNavigation = () => (
     <Tab.Navigator
@@ -32,7 +41,7 @@ const HomeNavigation = () => (
             },
         })}>
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Accounts" component={Accounts} />
+        <Tab.Screen name="Accounts" component={AccountNavigation} />
     </Tab.Navigator>
 );
 
