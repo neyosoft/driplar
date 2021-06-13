@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastProvider } from "react-native-fast-toast";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import AuthNavigator from "./navigation";
@@ -26,7 +27,9 @@ const App = () => {
     return (
         <SafeAreaProvider>
             <PaperProvider theme={theme}>
-                <AuthNavigator />
+                <ToastProvider>
+                    <AuthNavigator />
+                </ToastProvider>
             </PaperProvider>
         </SafeAreaProvider>
     );

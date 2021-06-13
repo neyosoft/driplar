@@ -27,10 +27,8 @@ export const ThreeColumnTab = ({ style, options, value, onChange }) => {
 const styles = StyleSheet.create({
     switchView: {
         padding: 5,
-        marginTop: 25,
         flexDirection: "row",
         alignItems: "center",
-        marginHorizontal: 20,
         borderRadius: theme.radius.sm,
         justifyContent: "space-between",
         backgroundColor: "rgba(171, 169, 174, 0.2)",

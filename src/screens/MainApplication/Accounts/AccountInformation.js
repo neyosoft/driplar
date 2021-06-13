@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Dimensions, ScrollView } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Rect, Text as TextSVG, Svg } from "react-native-svg";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import BottomSheet, { BottomSheetScrollView, BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 
 import theme from "../../../theme";
 import { RecordCard } from "../Home/components";
 import UberLogo from "../../../../assets/UberLogo.png";
 import { moneyFormat } from "../../../utils/money.utils";
-import { AppText, TwoColumnTab } from "../../../components";
+import { AppText, Button, TwoColumnTab } from "../../../components";
 import ProductImage from "../../../../assets/ProductImageOne.png";
-import { FcmbRoundedIcon } from "../../../../assets/icons";
+import { FcmbRoundedIcon, NetflixIcon } from "../../../../assets/icons";
 
 const chartData = {
     labels: ["NOV", "DEC", "JAN", "FEB", "MAR", "APR", "NOV", "DEC", "JAN", "FEB", "MAR", "APR"],
@@ -35,72 +36,85 @@ const chartData = {
     ],
 };
 
-const renderCategoryItem = value => {
-    switch (value) {
-        case "Transactions":
-            return (
-                <>
-                    <RecordCard
-                        amount={34660}
-                        title="Shopping"
-                        icon={ProductImage}
-                        style={styles.cardItem}
-                        description="Apr 7"
-                    />
-                    <RecordCard
-                        title="Uber"
-                        amount={12500}
-                        icon={UberLogo}
-                        style={styles.cardItem}
-                        description="Apr 5"
-                    />
-                    <RecordCard
-                        amount={25000}
-                        title="Shopping"
-                        icon={ProductImage}
-                        style={styles.cardItem}
-                        description="Apr 1"
-                    />
-                </>
-            );
-            break;
-
-        case "Categories":
-            return (
-                <>
-                    <RecordCard
-                        title="Uber"
-                        amount={50000}
-                        icon={UberLogo}
-                        style={styles.cardItem}
-                        description="2 transactions"
-                    />
-                    <RecordCard
-                        amount={35000}
-                        title="Shopping"
-                        icon={ProductImage}
-                        style={styles.cardItem}
-                        description="26 transactions"
-                    />
-                    <RecordCard
-                        title="Uber"
-                        amount={150000}
-                        icon={UberLogo}
-                        style={styles.cardItem}
-                        description="7 transactions"
-                    />
-                </>
-            );
-            break;
-    }
-};
-
 export const AccountInformation = ({ navigation }) => {
+    const bottomSheetRef = useRef(null);
+
+    const snapPoints = useMemo(() => [0, "70%"], []);
+
     const [selected, setSelected] = useState("Transactions");
     const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, visible: false, value: 0 });
 
+    const renderCategoryItem = value => {
+        switch (value) {
+            case "Transactions":
+                return (
+                    <>
+                        <RecordCard
+                            amount={34660}
+                            title="Shopping"
+                            icon={ProductImage}
+                            description="Apr 7"
+                            style={styles.cardItem}
+                            onPress={() => {
+                                bottomSheetRef.current.expand();
+                            }}
+                        />
+                        <RecordCard
+                            title="Uber"
+                            amount={12500}
+                            icon={UberLogo}
+                            description="Apr 5"
+                            style={styles.cardItem}
+                            onPress={() => {
+                                bottomSheetRef.current.expand();
+                            }}
+                        />
+                        <RecordCard
+                            amount={25000}
+                            title="Shopping"
+                            icon={ProductImage}
+                            description="Apr 1"
+                            style={styles.cardItem}
+                            onPress={() => {
+                                bottomSheetRef.current.expand();
+                            }}
+                        />
+                    </>
+                );
+                break;
+
+            case "Categories":
+                return (
+                    <>
+                        <RecordCard
+                            title="Uber"
+                            amount={50000}
+                            icon={UberLogo}
+                            style={styles.cardItem}
+                            description="2 transactions"
+                        />
+                        <RecordCard
+                            amount={35000}
+                            title="Shopping"
+                            icon={ProductImage}
+                            style={styles.cardItem}
+                            description="26 transactions"
+                        />
+                        <RecordCard
+                            title="Uber"
+                            amount={150000}
+                            icon={UberLogo}
+                            style={styles.cardItem}
+                            description="7 transactions"
+                        />
+                    </>
+                );
+                break;
+        }
+    };
+
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container} edges={["top"]}>
             <View style={styles.header}>
                 <View>
                     <TouchableOpacity style={styles.backButton} onPress={navigation.goBack}>
@@ -211,9 +225,57 @@ export const AccountInformation = ({ navigation }) => {
 
                 <View style={styles.itemListWrapper}>{renderCategoryItem(selected)}</View>
             </ScrollView>
+
+            <BottomSheet backdropComponent={BackdropComponent} ref={bottomSheetRef} index={0} snapPoints={snapPoints}>
+                <BottomSheetScrollView>
+                    <View style={styles.sheetView}>
+                        <View style={styles.bottomSheetHeader}>
+                            <View>
+                                <AppText variant="bold" style={styles.sheetHeaderTitle}>
+                                    Transaction
+                                </AppText>
+                                <AppText style={styles.sheetHeaderSubtitle}>Netflix</AppText>
+                            </View>
+                            <NetflixIcon />
+                        </View>
+                        <View style={[styles.sheetItem, { backgroundColor: "#FAFAFA" }]}>
+                            <AppText variant="medium" style={{ fontSize: 18 }}>
+                                {moneyFormat(14500)}
+                            </AppText>
+                            <AppText style={styles.sheetHeaderSubtitle}>Apr 7, 2021 - 1:40</AppText>
+                        </View>
+                        <View style={styles.sheetRow}>
+                            <FcmbRoundedIcon />
+                            <View style={{ flex: 1, marginHorizontal: 10 }}>
+                                <AppText variant="medium" style={{ fontSize: 14 }}>
+                                    FCMB
+                                </AppText>
+                                <AppText style={[styles.sheetHeaderSubtitle, { fontSize: 11, marginTop: 2 }]}>
+                                    Ref: 3849932000d3i0dn
+                                </AppText>
+                            </View>
+                            <Icon name="chevron-right" size={24} color="#8B8B8D" />
+                        </View>
+                        <View style={styles.sheetRow}>
+                            <FcmbRoundedIcon />
+                            <View style={{ flex: 1, marginHorizontal: 10 }}>
+                                <AppText variant="medium" style={{ fontSize: 14 }}>
+                                    Entertainment
+                                </AppText>
+                            </View>
+                            <Icon name="chevron-right" size={24} color="#8B8B8D" />
+                        </View>
+
+                        <Button style={styles.sheetBtn} label="Set as subscription" variant="secondary" />
+                        <Button style={styles.sheetBtn} label="Change Category" variant="secondary" />
+                    </View>
+                </BottomSheetScrollView>
+            </BottomSheet>
         </SafeAreaView>
     );
 };
+
+BackdropComponent = props => <BottomSheetBackdrop opacity={0.7} {...props} />;
 
 const styles = StyleSheet.create({
     container: {
@@ -281,5 +343,37 @@ const styles = StyleSheet.create({
         padding: 10,
         borderColor: "#DCDBDB",
         borderRadius: theme.radius.sm,
+    },
+    sheetView: {
+        padding: 22,
+    },
+    bottomSheetHeader: {
+        marginTop: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    sheetHeaderTitle: {
+        fontSize: 22,
+        color: theme.colors.primary,
+    },
+    sheetHeaderSubtitle: {
+        marginTop: 5,
+        color: theme.colors.label,
+    },
+    sheetItem: {
+        padding: 22,
+        marginTop: 10,
+    },
+    sheetRow: {
+        padding: 22,
+        paddingVertical: 15,
+        alignItems: "center",
+        flexDirection: "row",
+        borderBottomWidth: 1,
+        borderBottomColor: theme.colors.line,
+    },
+    sheetBtn: {
+        marginTop: 10,
     },
 });

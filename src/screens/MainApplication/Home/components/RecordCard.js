@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import theme from "../../../../theme";
 import { AppText } from "../../../../components";
@@ -7,7 +7,7 @@ import { moneyFormat } from "../../../../utils/money.utils";
 
 export const RecordCard = ({ style, onPress, icon, title, description, amount }) => {
     return (
-        <View style={[styles.container, style]}>
+        <TouchableOpacity onPress={onPress} style={[styles.container, style]}>
             <Image source={icon} style={styles.image} />
             <View style={styles.centerView}>
                 <AppText variant="medium" style={styles.title}>
@@ -18,7 +18,7 @@ export const RecordCard = ({ style, onPress, icon, title, description, amount })
             <AppText variant="medium" style={styles.amount}>
                 {moneyFormat(amount)}
             </AppText>
-        </View>
+        </TouchableOpacity>
     );
 };
 
