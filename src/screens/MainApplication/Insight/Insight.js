@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity, Image, FlatList, ScrollView } from "react-native";
-import { useToast } from "react-native-fast-toast";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import theme from "../../../theme";
 import { moneyFormat } from "../../../utils/money.utils";
-import { BrainIcon, PieChartIcon } from "../../../../assets/icons";
+import { PieChartIcon } from "../../../../assets/icons";
 import { AppText, Button, ThreeColumnTab } from "../../../components";
 import { GroceryCard, IncomeCard, TransportCard, TravelCard, ShoppingCard } from "./components";
 import { EntertainmentCard } from "./components/EntertainmentCard";
@@ -23,73 +22,89 @@ import { MiscellaneousCard } from "./components/MiscellaneousCard";
 import { SubscriptionsCard } from "./components/SubscriptionsCard";
 import { UncategorizedCard } from "./components/UncategorizedCard";
 
+import { FcmbCard, GTBankCard, CowrywiseCard } from "../Accounts/components";
+
 export const Insight = ({ navigation }) => {
-    const toast = useToast();
-    const [enable, setEnable] = useState(true);
     const [selectedTab, setSelectedTab] = useState("Feed");
 
-    const renderCard = item => {
+    const renderCategoryCard = item => {
         switch (item) {
             case "Groceries":
-                return <GroceryCard />;
-
+                return <GroceryCard onPress={() => navigation.navigate("Category")} />;
             case "Income":
-                return <IncomeCard />;
+                return <IncomeCard onPress={() => navigation.navigate("Category")} />;
             case "Transport":
-                return <TransportCard />;
+                return <TransportCard onPress={() => navigation.navigate("Category")} />;
             case "Travel":
-                return <TravelCard />;
+                return <TravelCard onPress={() => navigation.navigate("Category")} />;
             case "Shopping":
-                return <ShoppingCard />;
+                return <ShoppingCard onPress={() => navigation.navigate("Category")} />;
             case "Entertainment":
-                return <EntertainmentCard />;
+                return <EntertainmentCard onPress={() => navigation.navigate("Category")} />;
             case "Eating out":
-                return <EatingOutCard />;
+                return <EatingOutCard onPress={() => navigation.navigate("Category")} />;
             case "Home & Family":
-                return <HomeFamilyCard />;
+                return <HomeFamilyCard onPress={() => navigation.navigate("Category")} />;
             case "Health":
-                return <HealthCard />;
+                return <HealthCard onPress={() => navigation.navigate("Category")} />;
             case "Cash":
-                return <CashCard />;
+                return <CashCard onPress={() => navigation.navigate("Category")} />;
             case "Savings":
-                return <SavingsCard />;
+                return <SavingsCard onPress={() => navigation.navigate("Category")} />;
             case "Investments":
-                return <InvestmentCard />;
+                return <InvestmentCard onPress={() => navigation.navigate("Category")} />;
             case "Transfers":
-                return <TransferCard />;
+                return <TransferCard onPress={() => navigation.navigate("Category")} />;
             case "Charity":
-                return <CharityCard />;
+                return <CharityCard onPress={() => navigation.navigate("Category")} />;
             case "Bank charges":
-                return <BankChargesCard />;
+                return <BankChargesCard onPress={() => navigation.navigate("Category")} />;
             case "Miscellaneous":
-                return <MiscellaneousCard />;
+                return <MiscellaneousCard onPress={() => navigation.navigate("Category")} />;
             case "Subscriptions":
-                return <SubscriptionsCard />;
+                return <SubscriptionsCard onPress={() => navigation.navigate("Category")} />;
             case "Uncategorized":
-                return <UncategorizedCard />;
+                return <UncategorizedCard onPress={() => navigation.navigate("Category")} />;
 
             default:
-                return <GroceryCard />;
+                return <GroceryCard onPress={() => navigation.navigate("Category")} />;
         }
     };
 
-    const renderEmptyList = () => (
-        <SafeAreaView style={styles.container}>
-            <View style={{ flex: 1, paddingHorizontal: 20 }}>
-                <View style={styles.noAccountView}>
-                    <BrainIcon />
-
-                    <AppText style={styles.noAccountTitle}>No insights</AppText>
-
-                    <AppText style={styles.noAccountDescription}>
-                        Link your bank accounts to enable Driplar analyze your spending habits and provide personalized
-                        insights.
-                    </AppText>
-                </View>
-                <Button label="Link bank accounts" onPress={() => setEnable(true)} />
-            </View>
-        </SafeAreaView>
-    );
+    const renderMerchantCard = merchant => {
+        switch (merchant) {
+            case "FCMB":
+                return (
+                    <FcmbCard
+                        onLongPress={() => {
+                            setSelectedBank("FCMB");
+                            bottomSheetRef.current.expand();
+                        }}
+                        onPress={() => navigation.navigate("MerchantInformation")}
+                    />
+                );
+            case "GTBank":
+                return (
+                    <GTBankCard
+                        onLongPress={() => {
+                            setSelectedBank("GTBank");
+                            bottomSheetRef.current.expand();
+                        }}
+                        onPress={() => navigation.navigate("MerchantInformation")}
+                    />
+                );
+            case "Cowrywise":
+                return (
+                    <CowrywiseCard
+                        onLongPress={() => {
+                            setSelectedBank("Cowrywise");
+                            bottomSheetRef.current.expand();
+                        }}
+                        onPress={() => navigation.navigate("MerchantInformation")}
+                    />
+                );
+        }
+    };
 
     const renderFeeds = () => (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -135,8 +150,10 @@ export const Insight = ({ navigation }) => {
         return (
             <FlatList
                 numColumns={2}
-                renderItem={({ item }) => renderCard(item)}
+                style={{ marginBottom: 5 }}
+                renderItem={({ item }) => renderCategoryCard(item)}
                 contentContainerStyle={{ paddingHorizontal: 20 }}
+                keyExtractor={item => item}
                 data={[
                     "Groceries",
                     "Income",
@@ -162,22 +179,30 @@ export const Insight = ({ navigation }) => {
         );
     };
 
+    const renderMerchants = () => (
+        <FlatList
+            numColumns={2}
+            contentContainerStyle={{ paddingHorizontal: 20 }}
+            data={["FCMB", "GTBank", "Cowrywise"]}
+            keyExtractor={(_, index) => `index-${index}`}
+            renderItem={({ item }) => renderMerchantCard(item)}
+            columnWrapperStyle={{ justifyContent: "space-between", marginBottom: 10 }}
+        />
+    );
+
     const renderContent = () => {
         switch (selectedTab) {
             case "Feed":
                 return renderFeeds();
-
             case "Categories":
                 return renderCategories();
+            case "Merchants":
+                return renderMerchants();
         }
     };
 
-    if (!enable) {
-        return renderEmptyList();
-    }
-
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container} edges={["top"]}>
             <View style={styles.header}>
                 <AppText variant="medium" style={styles.title}>
                     Insight
@@ -215,9 +240,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 22,
-    },
-    flatlist: {
-        marginTop: 20,
     },
     noAccountView: {
         flex: 1,

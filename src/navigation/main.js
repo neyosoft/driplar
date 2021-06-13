@@ -14,7 +14,7 @@ import {
     DealInactiveIcon,
 } from "../../assets/icons";
 
-import { Insight } from "../screens/MainApplication/Insight";
+import { Insight, Category, MerchantInformation } from "../screens/MainApplication/Insight";
 import { AccountList, AccountInformation } from "../screens/MainApplication/Accounts";
 
 const Stack = createStackNavigator();
@@ -30,6 +30,8 @@ const AccountNavigation = () => (
 const InsightNavigation = () => (
     <Stack.Navigator initialRouteName="Insight" headerMode="none">
         <Stack.Screen name="Insight" component={Insight} />
+        <Stack.Screen name="Category" component={Category} />
+        <Stack.Screen name="MerchantInformation" component={MerchantInformation} />
     </Stack.Navigator>
 );
 
