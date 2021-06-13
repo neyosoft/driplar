@@ -8,13 +8,13 @@ export const TwoColumnTab = ({ style, options, value, onChange }) => {
     const toBeRender = options.map(option => {
         if (option === value) {
             return (
-                <View style={[styles.switcherRowView, styles.switcherSelectedView]}>
+                <View key={option} style={[styles.switcherRowView, styles.switcherSelectedView]}>
                     <AppText style={styles.switcherSelectedText}>{option}</AppText>
                 </View>
             );
         } else {
             return (
-                <TouchableOpacity style={styles.switcherRowView} onPress={() => onChange(option)}>
+                <TouchableOpacity key={option} style={styles.switcherRowView} onPress={() => onChange(option)}>
                     <AppText style={styles.switcherText}>{option}</AppText>
                 </TouchableOpacity>
             );
