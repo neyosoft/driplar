@@ -14,6 +14,14 @@ import { EatingOutCard } from "./components/EatingOutCard";
 import { HomeFamilyCard } from "./components/HomeFamilyCard";
 import { HealthCard } from "./components/HealthCard";
 import { CashCard } from "./components/CashCard";
+import { SavingsCard } from "./components/SavingsCard";
+import { InvestmentCard } from "./components/InvestmentCard";
+import { TransferCard } from "./components/TransferCard";
+import { CharityCard } from "./components/CharityCard";
+import { BankChargesCard } from "./components/BankChargesCard";
+import { MiscellaneousCard } from "./components/MiscellaneousCard";
+import { SubscriptionsCard } from "./components/SubscriptionsCard";
+import { UncategorizedCard } from "./components/UncategorizedCard";
 
 export const Insight = ({ navigation }) => {
     const toast = useToast();
@@ -43,6 +51,22 @@ export const Insight = ({ navigation }) => {
                 return <HealthCard />;
             case "Cash":
                 return <CashCard />;
+            case "Savings":
+                return <SavingsCard />;
+            case "Investments":
+                return <InvestmentCard />;
+            case "Transfers":
+                return <TransferCard />;
+            case "Charity":
+                return <CharityCard />;
+            case "Bank charges":
+                return <BankChargesCard />;
+            case "Miscellaneous":
+                return <MiscellaneousCard />;
+            case "Subscriptions":
+                return <SubscriptionsCard />;
+            case "Uncategorized":
+                return <UncategorizedCard />;
 
             default:
                 return <GroceryCard />;
@@ -131,7 +155,7 @@ export const Insight = ({ navigation }) => {
                     "Bank charges",
                     "Miscellaneous",
                     "Subscriptions",
-                    "Subscriptions",
+                    "Uncategorized",
                 ]}
                 columnWrapperStyle={{ justifyContent: "space-between", marginBottom: 10 }}
             />
