@@ -2,7 +2,8 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { Home, LinkAccount, Overview } from "../screens/MainApplication";
+import { LinkAccount } from "../screens/MainApplication";
+import { Home, Overview } from "../screens/MainApplication/Home";
 import {
     AccountIcon,
     AccountInactiveIcon,
@@ -20,6 +21,13 @@ import { AccountList, AccountInformation } from "../screens/MainApplication/Acco
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const HomeNavigation = () => (
+    <Stack.Navigator initialRouteName="AccountList" headerMode="none">
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Overview" component={Overview} />
+    </Stack.Navigator>
+);
+
 const AccountNavigation = () => (
     <Stack.Navigator initialRouteName="AccountList" headerMode="none">
         <Stack.Screen name="AccountList" component={AccountList} />
@@ -35,7 +43,7 @@ const InsightNavigation = () => (
     </Stack.Navigator>
 );
 
-const HomeNavigation = () => (
+const BottomNavigation = () => (
     <Tab.Navigator
         initialRouteName="Home"
         tabBarOptions={{
@@ -58,7 +66,7 @@ const HomeNavigation = () => (
                 }
             },
         })}>
-        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Home" component={HomeNavigation} />
         <Tab.Screen name="Accounts" component={AccountNavigation} />
         <Tab.Screen name="Insight" component={InsightNavigation} />
         <Tab.Screen name="Deal" component={InsightNavigation} />
@@ -68,7 +76,7 @@ const HomeNavigation = () => (
 const MainApplicationNavigator = () => {
     return (
         <Stack.Navigator initialRouteName="Home" headerMode="none">
-            <Stack.Screen name="Home" component={HomeNavigation} />
+            <Stack.Screen name="Home" component={BottomNavigation} />
             <Stack.Screen name="Overview" component={Overview} />
             <Stack.Screen name="LinkAccount" component={LinkAccount} />
         </Stack.Navigator>

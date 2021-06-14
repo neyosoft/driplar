@@ -8,10 +8,10 @@ import theme from "../../../theme";
 import { RecordCard } from "../Home/components";
 import UberLogo from "../../../../assets/UberLogo.png";
 import { moneyFormat } from "../../../utils/money.utils";
-import { AppText, Button, TwoColumnTab } from "../../../components";
 import ProductImage from "../../../../assets/ProductImageOne.png";
-import { FcmbRoundedIcon, NetflixIcon, PieChartIcon } from "../../../../assets/icons";
+import { AppText, Button, TwoColumnTab } from "../../../components";
 import { SportifyLogo } from "../../../../assets/icons/SportifyLogo";
+import { FcmbRoundedIcon, NetflixIcon, PieChartIcon } from "../../../../assets/icons";
 
 export const MerchantInformation = ({ navigation }) => {
     const bottomSheetRef = useRef(null);

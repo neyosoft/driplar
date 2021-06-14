@@ -129,7 +129,7 @@ export const Overview = ({ navigation }) => {
     const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, visible: false, value: 0 });
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container} edges={["top"]}>
             <View style={styles.header}>
                 <TouchableOpacity style={styles.backButton} onPress={navigation.goBack}>
                     <Icon name="chevron-left" size={30} color={theme.colors.black} />
