@@ -1,6 +1,6 @@
 import React, { useMemo, useRef, useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Dimensions, ScrollView } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import { View, StyleSheet, TouchableOpacity, Dimensions, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Rect, Text as TextSVG, Svg } from "react-native-svg";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -10,8 +10,8 @@ import theme from "../../../theme";
 import { RecordCard } from "../Home/components";
 import UberLogo from "../../../../assets/UberLogo.png";
 import { moneyFormat } from "../../../utils/money.utils";
-import { AppText, Button, TwoColumnTab } from "../../../components";
 import ProductImage from "../../../../assets/ProductImageOne.png";
+import { AppText, Button, TwoColumnTab } from "../../../components";
 import { FcmbRoundedIcon, NetflixIcon } from "../../../../assets/icons";
 
 const chartData = {

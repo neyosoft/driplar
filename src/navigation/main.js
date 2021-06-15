@@ -17,12 +17,13 @@ import {
 
 import { Insight, Category, MerchantInformation } from "../screens/MainApplication/Insight";
 import { AccountList, AccountInformation } from "../screens/MainApplication/Accounts";
+import { Deals } from "../screens/MainApplication/Deals";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const HomeNavigation = () => (
-    <Stack.Navigator initialRouteName="AccountList" headerMode="none">
+    <Stack.Navigator initialRouteName="Home" headerMode="none">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Overview" component={Overview} />
     </Stack.Navigator>
@@ -40,6 +41,12 @@ const InsightNavigation = () => (
         <Stack.Screen name="Insight" component={Insight} />
         <Stack.Screen name="Category" component={Category} />
         <Stack.Screen name="MerchantInformation" component={MerchantInformation} />
+    </Stack.Navigator>
+);
+
+const DealNavigation = () => (
+    <Stack.Navigator initialRouteName="Deals" headerMode="none">
+        <Stack.Screen name="Deals" component={Deals} />
     </Stack.Navigator>
 );
 
@@ -69,7 +76,7 @@ const BottomNavigation = () => (
         <Tab.Screen name="Home" component={HomeNavigation} />
         <Tab.Screen name="Accounts" component={AccountNavigation} />
         <Tab.Screen name="Insight" component={InsightNavigation} />
-        <Tab.Screen name="Deal" component={InsightNavigation} />
+        <Tab.Screen name="Deal" component={DealNavigation} />
     </Tab.Navigator>
 );
 
@@ -77,7 +84,6 @@ const MainApplicationNavigator = () => {
     return (
         <Stack.Navigator initialRouteName="Home" headerMode="none">
             <Stack.Screen name="Home" component={BottomNavigation} />
-            <Stack.Screen name="Overview" component={Overview} />
             <Stack.Screen name="LinkAccount" component={LinkAccount} />
         </Stack.Navigator>
     );
