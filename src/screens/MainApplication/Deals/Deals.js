@@ -1,7 +1,18 @@
 import React, { useState } from "react";
+import { RectButton } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, StyleSheet, Image, TouchableOpacity, TouchableNativeFeedback, Platform } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { View, StyleSheet, Image, TouchableOpacity, TouchableNativeFeedback, Platform, Dimensions } from "react-native";
+import Animated, {
+    runOnJS,
+    withTiming,
+    interpolate,
+    useSharedValue,
+    useAnimatedStyle,
+    interpolateColor,
+} from "react-native-reanimated";
+
+const { height } = Dimensions.get("window");
 
 import theme from "../../../theme";
 import MtnDeal from "../../../../assets/Mtn.png";
@@ -9,12 +20,48 @@ import DealImage from "../../../../assets/Deal.png";
 import { AppText, Button } from "../../../components";
 import { ScrollView } from "react-native-gesture-handler";
 import { MtnLogo } from "../../../../assets/icons/MtnLogo";
+import { StarIcon } from "../../../../assets/icons/StarIcon";
 import { LabelIcon } from "../../../../assets/icons/LabelIcon";
+import { ThumbsDownIcon } from "../../../../assets/icons/ThumbsDownIcon";
+import { ShareArrowIcon } from "../../../../assets/icons/ShareArrowIcon";
+import { StopDealIcon } from "../../../../assets/icons/StopDealIcon";
 
 const Touchable = Platform.OS === "android" ? TouchableNativeFeedback : TouchableOpacity;
 
 export const Deals = ({ navigation }) => {
     const [enabled, setEnabled] = useState(true);
+
+    const modalAnimation = useSharedValue(0);
+    const [showModal, setShowModal] = useState(false);
+
+    const openModal = () => {
+        setShowModal(true);
+        modalAnimation.value = withTiming(1, { duration: 500 });
+    };
+
+    const closeModal = () => {
+        modalAnimation.value = withTiming(0, { duration: 500 }, () => {
+            "worklet";
+            runOnJS(setShowModal)(false);
+        });
+    };
+
+    const modalContentStyle = useAnimatedStyle(() => {
+        return {
+            opacity: modalAnimation.value,
+            transform: [{ translateY: interpolate(modalAnimation.value, [0, 1], [height, 0]) }],
+        };
+    }, []);
+
+    const overlayStyle = useAnimatedStyle(() => {
+        return {
+            backgroundColor: interpolateColor(
+                modalAnimation.value,
+                [0, 1],
+                ["rgba(255, 255, 255, 0)", "rgba(0, 0, 0, 0.8)"],
+            ),
+        };
+    }, []);
 
     const renderEmptyList = () => (
         <SafeAreaView style={styles.container}>
@@ -75,7 +122,7 @@ export const Deals = ({ navigation }) => {
                                 <AppText style={{ marginLeft: 5 }}>MTN</AppText>
                             </View>
 
-                            <TouchableOpacity onPress={() => {}}>
+                            <TouchableOpacity onPress={openModal}>
                                 <Icon name="dots-horizontal" size={25} />
                             </TouchableOpacity>
                         </View>
@@ -96,7 +143,7 @@ export const Deals = ({ navigation }) => {
                                 <AppText style={{ marginLeft: 5 }}>Shopping</AppText>
                             </View>
 
-                            <TouchableOpacity onPress={() => {}}>
+                            <TouchableOpacity onPress={openModal}>
                                 <Icon name="dots-horizontal" size={25} />
                             </TouchableOpacity>
                         </View>
@@ -119,7 +166,7 @@ export const Deals = ({ navigation }) => {
                                 <AppText style={{ marginLeft: 5 }}>MTN</AppText>
                             </View>
 
-                            <TouchableOpacity onPress={() => {}}>
+                            <TouchableOpacity onPress={openModal}>
                                 <Icon name="dots-horizontal" size={25} />
                             </TouchableOpacity>
                         </View>
@@ -133,6 +180,40 @@ export const Deals = ({ navigation }) => {
                     </View>
                 </Touchable>
             </ScrollView>
+
+            {showModal && (
+                <>
+                    <Animated.View
+                        onPress={closeModal}
+                        onTouchEnd={closeModal}
+                        style={[StyleSheet.absoluteFill, overlayStyle]}
+                    />
+
+                    <Animated.View pointerEvents="box-none" style={[styles.overlay]}>
+                        <Animated.View style={[styles.overlayContent, modalContentStyle]}>
+                            <View style={styles.topContent}>
+                                <RectButton style={[styles.shareRow, styles.shareRowLine]}>
+                                    <ShareArrowIcon style={{ marginRight: 10 }} />
+                                    <AppText>Share</AppText>
+                                </RectButton>
+                                <RectButton style={[styles.shareRow, styles.shareRowLine]}>
+                                    <StarIcon style={{ marginRight: 10 }} />
+                                    <AppText>Save for later</AppText>
+                                </RectButton>
+                                <RectButton style={[styles.shareRow, styles.shareRowLine]}>
+                                    <ThumbsDownIcon style={{ marginRight: 10 }} />
+                                    <AppText>Not interested in this deal</AppText>
+                                </RectButton>
+                                <RectButton style={[styles.shareRow, styles.shareRowLine]}>
+                                    <StopDealIcon style={{ marginRight: 10 }} />
+                                    <AppText>Not interested in MTN</AppText>
+                                </RectButton>
+                            </View>
+                            <Button variant="secondary" label="Cancel" style={styles.cancelBtn} onPress={closeModal} />
+                        </Animated.View>
+                    </Animated.View>
+                </>
+            )}
         </SafeAreaView>
     );
 };
@@ -210,5 +291,31 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontSize: 13,
         lineHeight: 20,
+    },
+    overlay: {
+        alignItems: "center",
+        ...StyleSheet.absoluteFill,
+        justifyContent: "flex-end",
+    },
+    overlayContent: {
+        width: "90%",
+        marginBottom: 40,
+    },
+    topContent: {
+        borderRadius: theme.radius.md,
+        backgroundColor: theme.colors.white,
+    },
+    shareRow: {
+        paddingVertical: 15,
+        flexDirection: "row",
+        alignItems: "center",
+        paddingHorizontal: 20,
+    },
+    shareRowLine: {
+        borderBottomColor: theme.colors.line,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+    },
+    cancelBtn: {
+        marginTop: 8,
     },
 });

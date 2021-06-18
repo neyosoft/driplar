@@ -4,29 +4,29 @@ import { View, StyleSheet, Image, Dimensions, ScrollView, TouchableOpacity } fro
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { RectButton } from "react-native-gesture-handler";
 import Animated, {
-    useAnimatedStyle,
-    useSharedValue,
-    withTiming,
-    interpolateColor,
-    interpolate,
     runOnJS,
+    withTiming,
+    interpolate,
+    useSharedValue,
+    useAnimatedStyle,
+    interpolateColor,
 } from "react-native-reanimated";
 const { width, height } = Dimensions.get("window");
 
 import theme from "../../theme";
 import DealImage from "../../../assets/Deal.png";
 import { AppText, Button } from "../../components";
-import MoreMtnDeal from "../../../assets/more-deal-mtn.png";
-import MoreZaraDeal from "../../../assets/more-deal-zara.png";
 import ZaraLogo from "../../../assets/zara-logo.png";
 import JumiaLogo from "../../../assets/jumia-logo.png";
+import MoreMtnDeal from "../../../assets/more-deal-mtn.png";
+import MoreZaraDeal from "../../../assets/more-deal-zara.png";
 import { TwitterIcon } from "../../../assets/icons/TwitterIcon.js";
 import { FacebookIcon } from "../../../assets/icons/FacebookIcon.js";
 import { WhatsappIcon } from "../../../assets/icons/WhatsappIcon.js";
-import { InstagramIcon } from "../../../assets/icons/InstagramIcon.js";
 import { DealBackIcon } from "../../../assets/icons/DealBackIcon.js";
-import { DealOptionIcon } from "../../../assets/icons/DealOptionIcon.js";
+import { InstagramIcon } from "../../../assets/icons/InstagramIcon.js";
 import { ShareLinkIcon } from "../../../assets/icons/ShareLinkIcon.js";
+import { DealOptionIcon } from "../../../assets/icons/DealOptionIcon.js";
 import { ShareMessageIcon } from "../../../assets/icons/ShareMessageIcon.js";
 
 export const Article = ({ navigation }) => {
