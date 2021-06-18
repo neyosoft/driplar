@@ -18,7 +18,7 @@ import { Insight, Category, MerchantInformation } from "../screens/MainApplicati
 import { AccountList, AccountInformation } from "../screens/MainApplication/Accounts";
 import { Deals } from "../screens/MainApplication/Deals";
 import { Article, LinkAccount } from "../screens/MainApplication";
-import { Settings, EditProfile } from "../screens/MainApplication/Settings";
+import { Help, Settings, EditProfile, Notification } from "../screens/MainApplication/Settings";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -53,8 +53,10 @@ const DealNavigation = () => (
 
 const SettingsNavigation = () => (
     <Stack.Navigator initialRouteName="Settings" headerMode="none">
+        <Stack.Screen name="Help" component={Help} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="Notification" component={Notification} />
     </Stack.Navigator>
 );
 

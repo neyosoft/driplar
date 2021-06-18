@@ -29,7 +29,7 @@ export const Settings = ({ navigation }) => {
                     </View>
                     <Icon name="chevron-right" color="#B1AEB8" size={25} />
                 </RectButton>
-                <RectButton style={styles.rowItem}>
+                <RectButton style={styles.rowItem} onPress={() => navigation.navigate("Notification")}>
                     <AppText variant="medium">Notifications</AppText>
                     <Icon name="chevron-right" color="#B1AEB8" size={25} />
                 </RectButton>
@@ -41,7 +41,7 @@ export const Settings = ({ navigation }) => {
                     <AppText variant="medium">Send us your suggestions</AppText>
                     <Icon name="chevron-right" color="#B1AEB8" size={25} />
                 </RectButton>
-                <RectButton style={styles.rowItem}>
+                <RectButton style={styles.rowItem} onPress={() => navigation.navigate("Help")}>
                     <AppText variant="medium">Help</AppText>
                     <Icon name="chevron-right" color="#B1AEB8" size={25} />
                 </RectButton>

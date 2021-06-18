@@ -12,7 +12,7 @@ import Animated, {
     interpolateColor,
 } from "react-native-reanimated";
 
-const { width, height } = Dimensions.get("window");
+const { height } = Dimensions.get("window");
 
 import { AppText, Button } from "../../../components";
 import theme from "../../../theme";
