@@ -53,13 +53,13 @@ export const Help = ({ navigation }) => {
                     <TextInput
                         label="First name"
                         style={styles.formGroup}
-                        underlineColor={theme.colors.purple}
+                        underlineColor="transparent"
                         theme={{ colors: { background: "#fff" } }}
                     />
                     <TextInput
                         label="Email"
                         style={styles.formGroup}
-                        underlineColor={theme.colors.purple}
+                        underlineColor="transparent"
                         theme={{ colors: { background: "#fff" } }}
                     />
 

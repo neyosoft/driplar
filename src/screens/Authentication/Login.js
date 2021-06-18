@@ -22,14 +22,14 @@ export const Login = ({ navigation }) => {
                 <TextInput
                     label="Email"
                     style={styles.formGroup}
-                    underlineColor={theme.colors.purple}
+                    underlineColor="transparent"
                     theme={{ colors: { background: "#fff" } }}
                 />
                 <TextInput
                     label="Password"
                     secureTextEntry={true}
                     style={styles.formGroup}
-                    underlineColor={theme.colors.purple}
+                    underlineColor="transparent"
                     right={<TextInput.Affix text="Show" />}
                     theme={{ colors: { background: "#fff" } }}
                 />
