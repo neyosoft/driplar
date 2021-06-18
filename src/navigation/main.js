@@ -2,7 +2,6 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import { LinkAccount } from "../screens/MainApplication";
 import { Home, Overview } from "../screens/MainApplication/Home";
 import {
     AccountIcon,
@@ -18,6 +17,7 @@ import {
 import { Insight, Category, MerchantInformation } from "../screens/MainApplication/Insight";
 import { AccountList, AccountInformation } from "../screens/MainApplication/Accounts";
 import { Deals } from "../screens/MainApplication/Deals";
+import { Article, LinkAccount } from "../screens/MainApplication";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -83,6 +83,7 @@ const BottomNavigation = () => (
 const MainApplicationNavigator = () => {
     return (
         <Stack.Navigator initialRouteName="Home" headerMode="none">
+            <Stack.Screen name="Article" component={Article} />
             <Stack.Screen name="Home" component={BottomNavigation} />
             <Stack.Screen name="LinkAccount" component={LinkAccount} />
         </Stack.Navigator>

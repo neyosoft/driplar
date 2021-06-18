@@ -1,7 +1,7 @@
 import ActionSheet from "react-native-actionsheet";
 import React, { useState, useRef, useMemo } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity, TouchableNativeFeedback, Platform } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 
@@ -13,13 +13,15 @@ import { ScrollView } from "react-native-gesture-handler";
 import { MtnLogo } from "../../../../assets/icons/MtnLogo";
 import { LabelIcon } from "../../../../assets/icons/LabelIcon";
 
+const Touchable = Platform.OS === "android" ? TouchableNativeFeedback : TouchableOpacity;
+
 export const Deals = ({ navigation }) => {
     const bottomSheetRef = useRef(null);
 
     const actionSheet = useRef(null);
     const snapPoints = useMemo(() => [0, "40%"], []);
 
-    const [enabled, setEnabled] = useState(false);
+    const [enabled, setEnabled] = useState(true);
 
     const renderEmptyList = () => (
         <SafeAreaView style={styles.container}>
@@ -71,65 +73,72 @@ export const Deals = ({ navigation }) => {
                 </ScrollView>
             </View>
             <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>
-                <View style={styles.dealCard}>
-                    <Image source={MtnDeal} style={styles.dealImageStyle} />
-                    <View style={styles.dealHeader}>
-                        <View style={{ flexDirection: "row" }}>
-                            <MtnLogo />
-                            <AppText style={{ marginLeft: 5 }}>MTN</AppText>
-                        </View>
+                <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
+                    <View>
+                        <Image source={MtnDeal} style={styles.dealImageStyle} />
+                        <View style={styles.dealHeader}>
+                            <View style={{ flexDirection: "row" }}>
+                                <MtnLogo />
+                                <AppText style={{ marginLeft: 5 }}>MTN</AppText>
+                            </View>
 
-                        <TouchableOpacity onPress={() => actionSheet.current?.show()}>
-                            <Icon name="dots-horizontal" size={25} />
-                        </TouchableOpacity>
-                    </View>
-                    <AppText variant="medium" style={styles.dealTitle}>
-                        Welcome Back Offer
-                    </AppText>
-                    <AppText style={styles.dealDescription}>
-                        Welcome Back Offer is an offer that rewards customers that spent at least 60 days on the MTN
-                        network and have not performed any chargeable activity in the last...
-                    </AppText>
-                </View>
-                <View style={styles.dealCard}>
-                    <Image source={DealImage} style={styles.dealImageStyle} />
-                    <View style={styles.dealHeader}>
-                        <View style={{ flexDirection: "row" }}>
-                            <AppText style={{ marginLeft: 5 }}>Shopping</AppText>
+                            <TouchableOpacity onPress={() => actionSheet.current?.show()}>
+                                <Icon name="dots-horizontal" size={25} />
+                            </TouchableOpacity>
                         </View>
-
-                        <TouchableOpacity onPress={() => bottomSheetRef.current?.expand()}>
-                            <Icon name="dots-horizontal" size={25} />
-                        </TouchableOpacity>
+                        <AppText variant="medium" style={styles.dealTitle}>
+                            Welcome Back Offer
+                        </AppText>
+                        <AppText style={styles.dealDescription}>
+                            Welcome Back Offer is an offer that rewards customers that spent at least 60 days on the MTN
+                            network and have not performed any chargeable activity in the last...
+                        </AppText>
                     </View>
-                    <AppText variant="medium" style={styles.dealTitle}>
-                        A Guide to Paris’s Best Independent Shops and Businesses
-                    </AppText>
-                    <AppText style={styles.dealDescription}>
-                        Physical space is often conceived in three linear dimensions, although modern physicists usually
-                        consider it, with time, to be part of a boundless four-dimensional continuum known as spacetime.
-                    </AppText>
-                </View>
-                <View style={styles.dealCard}>
-                    <Image source={MtnDeal} style={styles.dealImageStyle} />
-                    <View style={styles.dealHeader}>
-                        <View style={{ flexDirection: "row" }}>
-                            <MtnLogo />
-                            <AppText style={{ marginLeft: 5 }}>MTN</AppText>
+                </Touchable>
+                <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
+                    <View>
+                        <Image source={DealImage} style={styles.dealImageStyle} />
+                        <View style={styles.dealHeader}>
+                            <View style={{ flexDirection: "row" }}>
+                                <AppText style={{ marginLeft: 5 }}>Shopping</AppText>
+                            </View>
+
+                            <TouchableOpacity onPress={() => bottomSheetRef.current?.expand()}>
+                                <Icon name="dots-horizontal" size={25} />
+                            </TouchableOpacity>
                         </View>
-
-                        <TouchableOpacity onPress={() => actionSheet.current?.show()}>
-                            <Icon name="dots-horizontal" size={25} />
-                        </TouchableOpacity>
+                        <AppText variant="medium" style={styles.dealTitle}>
+                            A Guide to Paris’s Best Independent Shops and Businesses
+                        </AppText>
+                        <AppText style={styles.dealDescription}>
+                            Physical space is often conceived in three linear dimensions, although modern physicists
+                            usually consider it, with time, to be part of a boundless four-dimensional continuum known
+                            as spacetime.
+                        </AppText>
                     </View>
-                    <AppText variant="medium" style={styles.dealTitle}>
-                        Welcome Back Offer
-                    </AppText>
-                    <AppText style={styles.dealDescription}>
-                        Welcome Back Offer is an offer that rewards customers that spent at least 60 days on the MTN
-                        network and have not performed any chargeable activity in the last...
-                    </AppText>
-                </View>
+                </Touchable>
+                <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
+                    <View>
+                        <Image source={MtnDeal} style={styles.dealImageStyle} />
+                        <View style={styles.dealHeader}>
+                            <View style={{ flexDirection: "row" }}>
+                                <MtnLogo />
+                                <AppText style={{ marginLeft: 5 }}>MTN</AppText>
+                            </View>
+
+                            <TouchableOpacity onPress={() => actionSheet.current?.show()}>
+                                <Icon name="dots-horizontal" size={25} />
+                            </TouchableOpacity>
+                        </View>
+                        <AppText variant="medium" style={styles.dealTitle}>
+                            Welcome Back Offer
+                        </AppText>
+                        <AppText style={styles.dealDescription}>
+                            Welcome Back Offer is an offer that rewards customers that spent at least 60 days on the MTN
+                            network and have not performed any chargeable activity in the last...
+                        </AppText>
+                    </View>
+                </Touchable>
             </ScrollView>
 
             <ActionSheet
