@@ -1,9 +1,7 @@
-import ActionSheet from "react-native-actionsheet";
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, StyleSheet, Image, TouchableOpacity, TouchableNativeFeedback, Platform } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import BottomSheet, { BottomSheetBackdrop } from "@gorhom/bottom-sheet";
 
 import theme from "../../../theme";
 import MtnDeal from "../../../../assets/Mtn.png";
@@ -16,11 +14,6 @@ import { LabelIcon } from "../../../../assets/icons/LabelIcon";
 const Touchable = Platform.OS === "android" ? TouchableNativeFeedback : TouchableOpacity;
 
 export const Deals = ({ navigation }) => {
-    const bottomSheetRef = useRef(null);
-
-    const actionSheet = useRef(null);
-    const snapPoints = useMemo(() => [0, "40%"], []);
-
     const [enabled, setEnabled] = useState(true);
 
     const renderEmptyList = () => (
@@ -82,7 +75,7 @@ export const Deals = ({ navigation }) => {
                                 <AppText style={{ marginLeft: 5 }}>MTN</AppText>
                             </View>
 
-                            <TouchableOpacity onPress={() => actionSheet.current?.show()}>
+                            <TouchableOpacity onPress={() => {}}>
                                 <Icon name="dots-horizontal" size={25} />
                             </TouchableOpacity>
                         </View>
@@ -103,7 +96,7 @@ export const Deals = ({ navigation }) => {
                                 <AppText style={{ marginLeft: 5 }}>Shopping</AppText>
                             </View>
 
-                            <TouchableOpacity onPress={() => bottomSheetRef.current?.expand()}>
+                            <TouchableOpacity onPress={() => {}}>
                                 <Icon name="dots-horizontal" size={25} />
                             </TouchableOpacity>
                         </View>
@@ -126,7 +119,7 @@ export const Deals = ({ navigation }) => {
                                 <AppText style={{ marginLeft: 5 }}>MTN</AppText>
                             </View>
 
-                            <TouchableOpacity onPress={() => actionSheet.current?.show()}>
+                            <TouchableOpacity onPress={() => {}}>
                                 <Icon name="dots-horizontal" size={25} />
                             </TouchableOpacity>
                         </View>
@@ -140,40 +133,9 @@ export const Deals = ({ navigation }) => {
                     </View>
                 </Touchable>
             </ScrollView>
-
-            <ActionSheet
-                ref={actionSheet}
-                styles={{
-                    messageText: {
-                        fontSize: 14,
-                        backgroundColor: "red",
-                    },
-                    buttonText: {
-                        fontSize: 15,
-                        color: "black",
-                    },
-                }}
-                options={["Share", "Save for later", "Not interested in this deal", "Not interested in MTN", "Cancel"]}
-                cancelButtonIndex={4}
-                onPress={index => {
-                    console.log("Clicked on some index: ", index);
-                }}
-            />
-
-            <BottomSheet backdropComponent={BackdropComponent} ref={bottomSheetRef} index={0} snapPoints={snapPoints}>
-                <View style={{ backgroundColor: "red", flex: 1 }}>
-                    <View>
-                        <View>
-                            <AppText>Share</AppText>
-                        </View>
-                    </View>
-                </View>
-            </BottomSheet>
         </SafeAreaView>
     );
 };
-
-BackdropComponent = props => <BottomSheetBackdrop opacity={0.7} {...props} />;
 
 const styles = StyleSheet.create({
     container: {
