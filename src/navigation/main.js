@@ -18,6 +18,7 @@ import { Insight, Category, MerchantInformation } from "../screens/MainApplicati
 import { AccountList, AccountInformation } from "../screens/MainApplication/Accounts";
 import { Deals } from "../screens/MainApplication/Deals";
 import { Article, LinkAccount } from "../screens/MainApplication";
+import { Settings, EditProfile } from "../screens/MainApplication/Settings";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,6 +51,13 @@ const DealNavigation = () => (
     </Stack.Navigator>
 );
 
+const SettingsNavigation = () => (
+    <Stack.Navigator initialRouteName="Settings" headerMode="none">
+        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
+    </Stack.Navigator>
+);
+
 const BottomNavigation = () => (
     <Tab.Navigator
         initialRouteName="Home"
@@ -58,6 +66,9 @@ const BottomNavigation = () => (
             inactiveTintColor: "#8B8B8D",
             labelStyle: {
                 fontFamily: "Metropolis-Regular",
+            },
+            style: {
+                backgroundColor: "#F9F9F9",
             },
         }}
         screenOptions={({ route }) => ({
@@ -86,6 +97,7 @@ const MainApplicationNavigator = () => {
             <Stack.Screen name="Article" component={Article} />
             <Stack.Screen name="Home" component={BottomNavigation} />
             <Stack.Screen name="LinkAccount" component={LinkAccount} />
+            <Stack.Screen name="Settings" component={SettingsNavigation} />
         </Stack.Navigator>
     );
 };

@@ -12,6 +12,7 @@ import Animated, {
     interpolateColor,
 } from "react-native-reanimated";
 const { width, height } = Dimensions.get("window");
+import { useToast } from "react-native-fast-toast";
 
 import theme from "../../theme";
 import DealImage from "../../../assets/Deal.png";
@@ -31,6 +32,7 @@ import { ShareMessageIcon } from "../../../assets/icons/ShareMessageIcon.js";
 
 export const Article = ({ navigation }) => {
     const modalAnimation = useSharedValue(0);
+    const toast = useToast();
     const [showModal, setShowModal] = useState(false);
 
     const openModal = () => {
@@ -64,89 +66,103 @@ export const Article = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <View>
-                <Image source={DealImage} style={styles.articleImage} />
-                <TouchableOpacity onPress={navigation.goBack} style={{ position: "absolute", left: 15, top: "47%" }}>
-                    <DealBackIcon />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={openModal} style={{ position: "absolute", right: 15, top: "47%" }}>
-                    <DealOptionIcon />
-                </TouchableOpacity>
-            </View>
-            <ScrollView style={{ marginTop: 10 }} contentContainerStyle={styles.contentContainerStyle}>
-                <View style={styles.tagView}>
-                    <AppText variant="medium" style={styles.tagText}>
-                        Shopping
-                    </AppText>
-                </View>
-
-                <AppText variant="medium" style={styles.title}>
-                    A Guide to Paris’s Best Independent Shops and Businesses
-                </AppText>
-
-                <View
-                    style={{
-                        marginTop: 15,
-                        alignItems: "center",
-                        flexDirection: "row",
-
-                        justifyContent: "space-between",
-                    }}>
-                    <View style={{ flexDirection: "row", alignItems: "center" }}>
-                        <Image source={ZaraLogo} style={{ marginRight: 5 }} />
-                        <AppText>Zara</AppText>
-                    </View>
-                    <AppText style={{ color: theme.colors.placeholder, fontSize: 12 }}>11 April 2021</AppText>
-                </View>
+            <ScrollView>
                 <View>
-                    <AppText style={styles.bodyText}>
-                        Physical space is often conceived in three linear dimensions, although modern physicists usually
-                        consider it, with time, to be part of a boundless four-dimensional continuum known as spacetime.
-                        The concept of space is considered to be of fundamental importance to an understanding of the
-                        physical universe.
-                    </AppText>
-                    <AppText style={styles.bodyText}>
-                        However, disagreement continues between philosophers over whether it is itself an entity, a
-                        relationship between entities, or part of a conceptual framework.
-                    </AppText>
-                    <View style={styles.imageBox}>
-                        <View style={styles.playBtnWrapper}>
-                            <Icon name="play" size={30} />
-                        </View>
-                    </View>
-                    <AppText style={styles.bodyText}>
-                        However, disagreement continues between philosophers over whether it is itself an entity, a
-                        relationship between entities, or part of a conceptual framework.
-                    </AppText>
+                    <Image source={DealImage} style={styles.articleImage} />
+                    <TouchableOpacity
+                        onPress={navigation.goBack}
+                        style={{ position: "absolute", left: 15, top: "47%" }}>
+                        <DealBackIcon />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={openModal} style={{ position: "absolute", right: 15, top: "47%" }}>
+                        <DealOptionIcon />
+                    </TouchableOpacity>
                 </View>
 
-                <View style={styles.buttonRow}>
-                    <Button style={styles.button} variant="secondary" label="Share" />
-                    <Button style={styles.button} variant="secondary" label="Save for later" />
-                </View>
-
-                <View style={styles.separator} />
-                <View>
-                    <AppText style={{ color: theme.colors.label }}>More on shopping</AppText>
-                </View>
-                <View style={styles.moreDealCard}>
-                    <Image source={MoreMtnDeal} />
-                    <View style={styles.moreDealCardRight}>
-                        <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
-                            <Image source={JumiaLogo} />
-                            <AppText style={{ marginLeft: 5, fontSize: 14 }}>Jumia</AppText>
-                        </View>
-                        <AppText variant="medium">We ship packages for as low as N750. Available in all 36...</AppText>
+                <View style={styles.content}>
+                    <View style={styles.tagView}>
+                        <AppText variant="medium" style={styles.tagText}>
+                            Shopping
+                        </AppText>
                     </View>
-                </View>
-                <View style={styles.moreDealCard}>
-                    <Image source={MoreZaraDeal} />
-                    <View style={styles.moreDealCardRight}>
+
+                    <AppText variant="medium" style={styles.title}>
+                        A Guide to Paris’s Best Independent Shops and Businesses
+                    </AppText>
+
+                    <View
+                        style={{
+                            marginTop: 15,
+                            alignItems: "center",
+                            flexDirection: "row",
+
+                            justifyContent: "space-between",
+                        }}>
                         <View style={{ flexDirection: "row", alignItems: "center" }}>
-                            <Image source={ZaraLogo} />
-                            <AppText style={{ marginLeft: 5, fontSize: 14 }}>Zara</AppText>
+                            <Image source={ZaraLogo} style={{ marginRight: 5 }} />
+                            <AppText>Zara</AppText>
                         </View>
-                        <AppText variant="medium">We ship packages for as low as N750. Available in all 36...</AppText>
+                        <AppText style={{ color: theme.colors.placeholder, fontSize: 12 }}>11 April 2021</AppText>
+                    </View>
+                    <View>
+                        <AppText style={styles.bodyText}>
+                            Physical space is often conceived in three linear dimensions, although modern physicists
+                            usually consider it, with time, to be part of a boundless four-dimensional continuum known
+                            as spacetime. The concept of space is considered to be of fundamental importance to an
+                            understanding of the physical universe.
+                        </AppText>
+                        <AppText style={styles.bodyText}>
+                            However, disagreement continues between philosophers over whether it is itself an entity, a
+                            relationship between entities, or part of a conceptual framework.
+                        </AppText>
+                        <View style={styles.imageBox}>
+                            <View style={styles.playBtnWrapper}>
+                                <Icon name="play" size={30} />
+                            </View>
+                        </View>
+                        <AppText style={styles.bodyText}>
+                            However, disagreement continues between philosophers over whether it is itself an entity, a
+                            relationship between entities, or part of a conceptual framework.
+                        </AppText>
+                    </View>
+
+                    <View style={styles.buttonRow}>
+                        <Button style={styles.button} variant="secondary" label="Share" onPress={openModal} />
+                        <Button
+                            style={styles.button}
+                            variant="secondary"
+                            label="Save for later"
+                            onPress={() => toast.show("Deal saved.")}
+                        />
+                    </View>
+
+                    <View style={styles.separator} />
+                    <View>
+                        <AppText style={{ color: theme.colors.label }}>More on shopping</AppText>
+                    </View>
+                    <View style={styles.moreDealCard}>
+                        <Image source={MoreMtnDeal} />
+                        <View style={styles.moreDealCardRight}>
+                            <View style={{ flexDirection: "row", alignItems: "center", marginBottom: 10 }}>
+                                <Image source={JumiaLogo} />
+                                <AppText style={{ marginLeft: 5, fontSize: 14 }}>Jumia</AppText>
+                            </View>
+                            <AppText variant="medium">
+                                We ship packages for as low as N750. Available in all 36...
+                            </AppText>
+                        </View>
+                    </View>
+                    <View style={styles.moreDealCard}>
+                        <Image source={MoreZaraDeal} />
+                        <View style={styles.moreDealCardRight}>
+                            <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                <Image source={ZaraLogo} />
+                                <AppText style={{ marginLeft: 5, fontSize: 14 }}>Zara</AppText>
+                            </View>
+                            <AppText variant="medium">
+                                We ship packages for as low as N750. Available in all 36...
+                            </AppText>
+                        </View>
                     </View>
                 </View>
             </ScrollView>
@@ -205,9 +221,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: width * 0.65,
     },
-    contentContainerStyle: {
+    content: {
         padding: 20,
-        paddingTop: 10,
     },
     tagText: {
         fontSize: 13,

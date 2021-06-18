@@ -20,7 +20,7 @@ const { width } = Dimensions.get("window");
 export const Home = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container} edges={["top"]}>
-            <Header />
+            <Header navigation={navigation} />
 
             <ScrollView>
                 <TouchableOpacity style={styles.balanceView} onPress={() => navigation.navigate("Overview")}>

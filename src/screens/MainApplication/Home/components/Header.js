@@ -1,15 +1,17 @@
 import React from "react";
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import { AppText } from "../../../../components";
 
-export const Header = () => {
+export const Header = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <AppText variant="bold" style={styles.homeLabel}>
                 Home
             </AppText>
-            <Image source={require("../../../../../assets/avatar.png")} style={styles.avatar} />
+            <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+                <Image source={require("../../../../../assets/avatar.png")} style={styles.avatar} />
+            </TouchableOpacity>
         </View>
     );
 };

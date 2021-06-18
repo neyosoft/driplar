@@ -26,10 +26,13 @@ import { ThumbsDownIcon } from "../../../../assets/icons/ThumbsDownIcon";
 import { ShareArrowIcon } from "../../../../assets/icons/ShareArrowIcon";
 import { StopDealIcon } from "../../../../assets/icons/StopDealIcon";
 
+const tags = ["Latest", "Saved", "Shopping", "Transport", "Entertainment"];
+
 const Touchable = Platform.OS === "android" ? TouchableNativeFeedback : TouchableOpacity;
 
 export const Deals = ({ navigation }) => {
     const [enabled, setEnabled] = useState(true);
+    const [tag, setTag] = useState("Latest");
 
     const modalAnimation = useSharedValue(0);
     const [showModal, setShowModal] = useState(false);
@@ -43,6 +46,26 @@ export const Deals = ({ navigation }) => {
         modalAnimation.value = withTiming(0, { duration: 500 }, () => {
             "worklet";
             runOnJS(setShowModal)(false);
+        });
+    };
+
+    const renderTags = () => {
+        return tags.map(item => {
+            if (item === tag) {
+                return (
+                    <View key={item} style={[styles.labelBtn, styles.activeLabelBtn]}>
+                        <AppText variant="medium" style={styles.activeLabelText}>
+                            {item}
+                        </AppText>
+                    </View>
+                );
+            } else {
+                return (
+                    <TouchableOpacity key={item} style={styles.labelBtn} onPress={() => setTag(item)}>
+                        <AppText variant="medium">{item}</AppText>
+                    </TouchableOpacity>
+                );
+            }
         });
     };
 
@@ -78,6 +101,89 @@ export const Deals = ({ navigation }) => {
         </SafeAreaView>
     );
 
+    const renderContent = () => {
+        if (tag === "Latest") {
+            return (
+                <>
+                    <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
+                        <View>
+                            <Image source={MtnDeal} style={styles.dealImageStyle} />
+                            <View style={styles.dealHeader}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <MtnLogo />
+                                    <AppText style={{ marginLeft: 5 }}>MTN</AppText>
+                                </View>
+
+                                <TouchableOpacity onPress={openModal}>
+                                    <Icon name="dots-horizontal" size={25} />
+                                </TouchableOpacity>
+                            </View>
+                            <AppText variant="medium" style={styles.dealTitle}>
+                                Welcome Back Offer
+                            </AppText>
+                            <AppText style={styles.dealDescription}>
+                                Welcome Back Offer is an offer that rewards customers that spent at least 60 days on the
+                                MTN network and have not performed any chargeable activity in the last...
+                            </AppText>
+                        </View>
+                    </Touchable>
+                    <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
+                        <View>
+                            <Image source={DealImage} style={styles.dealImageStyle} />
+                            <View style={styles.dealHeader}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <AppText style={{ marginLeft: 5 }}>Shopping</AppText>
+                                </View>
+
+                                <TouchableOpacity onPress={openModal}>
+                                    <Icon name="dots-horizontal" size={25} />
+                                </TouchableOpacity>
+                            </View>
+                            <AppText variant="medium" style={styles.dealTitle}>
+                                A Guide to Paris’s Best Independent Shops and Businesses
+                            </AppText>
+                            <AppText style={styles.dealDescription}>
+                                Physical space is often conceived in three linear dimensions, although modern physicists
+                                usually consider it, with time, to be part of a boundless four-dimensional continuum
+                                known as spacetime.
+                            </AppText>
+                        </View>
+                    </Touchable>
+                    <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
+                        <View>
+                            <Image source={MtnDeal} style={styles.dealImageStyle} />
+                            <View style={styles.dealHeader}>
+                                <View style={{ flexDirection: "row" }}>
+                                    <MtnLogo />
+                                    <AppText style={{ marginLeft: 5 }}>MTN</AppText>
+                                </View>
+
+                                <TouchableOpacity onPress={openModal}>
+                                    <Icon name="dots-horizontal" size={25} />
+                                </TouchableOpacity>
+                            </View>
+                            <AppText variant="medium" style={styles.dealTitle}>
+                                Welcome Back Offer
+                            </AppText>
+                            <AppText style={styles.dealDescription}>
+                                Welcome Back Offer is an offer that rewards customers that spent at least 60 days on the
+                                MTN network and have not performed any chargeable activity in the last...
+                            </AppText>
+                        </View>
+                    </Touchable>
+                </>
+            );
+        } else {
+            return (
+                <View style={{ flex: 1, justifyContent: "center", alignItems: "center", marginTop: "50%" }}>
+                    <AppText style={{ textAlign: "center", lineHeight: 20, width: "80%" }}>
+                        No saved deals. Deals you save for later will appear here.
+                    </AppText>
+                </View>
+            );
+        }
+    };
+
     if (!enabled) {
         return renderEmptyList();
     }
@@ -93,93 +199,10 @@ export const Deals = ({ navigation }) => {
                 </View>
 
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <View style={[styles.labelBtn, styles.activeLabelBtn]}>
-                        <AppText variant="medium" style={styles.activeLabelText}>
-                            Latest
-                        </AppText>
-                    </View>
-                    <View style={styles.labelBtn}>
-                        <AppText variant="medium">Saved</AppText>
-                    </View>
-                    <View style={styles.labelBtn}>
-                        <AppText variant="medium">Shopping</AppText>
-                    </View>
-                    <View style={styles.labelBtn}>
-                        <AppText variant="medium">Transport</AppText>
-                    </View>
-                    <View style={styles.labelBtn}>
-                        <AppText variant="medium">Entertainment</AppText>
-                    </View>
+                    {renderTags()}
                 </ScrollView>
             </View>
-            <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>
-                <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
-                    <View>
-                        <Image source={MtnDeal} style={styles.dealImageStyle} />
-                        <View style={styles.dealHeader}>
-                            <View style={{ flexDirection: "row" }}>
-                                <MtnLogo />
-                                <AppText style={{ marginLeft: 5 }}>MTN</AppText>
-                            </View>
-
-                            <TouchableOpacity onPress={openModal}>
-                                <Icon name="dots-horizontal" size={25} />
-                            </TouchableOpacity>
-                        </View>
-                        <AppText variant="medium" style={styles.dealTitle}>
-                            Welcome Back Offer
-                        </AppText>
-                        <AppText style={styles.dealDescription}>
-                            Welcome Back Offer is an offer that rewards customers that spent at least 60 days on the MTN
-                            network and have not performed any chargeable activity in the last...
-                        </AppText>
-                    </View>
-                </Touchable>
-                <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
-                    <View>
-                        <Image source={DealImage} style={styles.dealImageStyle} />
-                        <View style={styles.dealHeader}>
-                            <View style={{ flexDirection: "row" }}>
-                                <AppText style={{ marginLeft: 5 }}>Shopping</AppText>
-                            </View>
-
-                            <TouchableOpacity onPress={openModal}>
-                                <Icon name="dots-horizontal" size={25} />
-                            </TouchableOpacity>
-                        </View>
-                        <AppText variant="medium" style={styles.dealTitle}>
-                            A Guide to Paris’s Best Independent Shops and Businesses
-                        </AppText>
-                        <AppText style={styles.dealDescription}>
-                            Physical space is often conceived in three linear dimensions, although modern physicists
-                            usually consider it, with time, to be part of a boundless four-dimensional continuum known
-                            as spacetime.
-                        </AppText>
-                    </View>
-                </Touchable>
-                <Touchable style={styles.dealCard} onPress={() => navigation.navigate("Article")}>
-                    <View>
-                        <Image source={MtnDeal} style={styles.dealImageStyle} />
-                        <View style={styles.dealHeader}>
-                            <View style={{ flexDirection: "row" }}>
-                                <MtnLogo />
-                                <AppText style={{ marginLeft: 5 }}>MTN</AppText>
-                            </View>
-
-                            <TouchableOpacity onPress={openModal}>
-                                <Icon name="dots-horizontal" size={25} />
-                            </TouchableOpacity>
-                        </View>
-                        <AppText variant="medium" style={styles.dealTitle}>
-                            Welcome Back Offer
-                        </AppText>
-                        <AppText style={styles.dealDescription}>
-                            Welcome Back Offer is an offer that rewards customers that spent at least 60 days on the MTN
-                            network and have not performed any chargeable activity in the last...
-                        </AppText>
-                    </View>
-                </Touchable>
-            </ScrollView>
+            <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>{renderContent()}</ScrollView>
 
             {showModal && (
                 <>
