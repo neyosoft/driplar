@@ -11,6 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1AD51E7B267E04E500F93712 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AD51E7A267E04E500F93712 /* File.swift */; };
 		5139F61AC5AC44C5A3E5D486 /* Metropolis-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 62EA65EF946B4682AA38AFAA /* Metropolis-Bold.otf */; };
 		53B6C568B3D2EC584B0A7F96 /* libPods-Driplar-DriplarTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 415B0BEC0A382C6CE83749F2 /* libPods-Driplar-DriplarTests.a */; };
 		81A74BE988584CEE99089FC3 /* Metropolis-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC91246236403B959872C2 /* Metropolis-Regular.otf */; };
@@ -42,6 +43,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Driplar/main.m; sourceTree = "<group>"; };
 		14AB88BC2656B47B00CC96AC /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
 		1A2B04B64B80E370A5411C05 /* Pods-Driplar-DriplarTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Driplar-DriplarTests.release.xcconfig"; path = "Target Support Files/Pods-Driplar-DriplarTests/Pods-Driplar-DriplarTests.release.xcconfig"; sourceTree = "<group>"; };
+		1AD51E79267E04E400F93712 /* Driplar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Driplar-Bridging-Header.h"; sourceTree = "<group>"; };
+		1AD51E7A267E04E500F93712 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		415B0BEC0A382C6CE83749F2 /* libPods-Driplar-DriplarTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Driplar-DriplarTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62EA65EF946B4682AA38AFAA /* Metropolis-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Metropolis-Bold.otf"; path = "../assets/fonts/Metropolis-Bold.otf"; sourceTree = "<group>"; };
 		651F336A5FD19C337EFE53AC /* Pods-Driplar-DriplarTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Driplar-DriplarTests.debug.xcconfig"; path = "Target Support Files/Pods-Driplar-DriplarTests/Pods-Driplar-DriplarTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				14AB88BC2656B47B00CC96AC /* MaterialCommunityIcons.ttf */,
+				1AD51E79267E04E400F93712 /* Driplar-Bridging-Header.h */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -152,6 +156,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				1AD51E7A267E04E500F93712 /* File.swift */,
 				14AB88BB2656B36F00CC96AC /* Fonts */,
 				13B07FAE1A68108700A75B9A /* Driplar */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -234,7 +239,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -441,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				1AD51E7B267E04E500F93712 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 651F336A5FD19C337EFE53AC /* Pods-Driplar-DriplarTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -487,6 +494,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1A2B04B64B80E370A5411C05 /* Pods-Driplar-DriplarTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = DriplarTests/Info.plist;
@@ -527,6 +535,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Driplar;
+				SWIFT_OBJC_BRIDGING_HEADER = "Fonts/Driplar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -552,6 +561,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Driplar;
+				SWIFT_OBJC_BRIDGING_HEADER = "Fonts/Driplar-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
