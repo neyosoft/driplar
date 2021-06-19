@@ -14,8 +14,8 @@ import Animated, {
 
 const { height } = Dimensions.get("window");
 
-import { AppText, Button } from "../../../components";
 import theme from "../../../theme";
+import { AppText, Button } from "../../../components";
 
 export const EditProfile = ({ navigation }) => {
     const modalAnimation = useSharedValue(0);

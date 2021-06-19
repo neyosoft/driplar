@@ -65,6 +65,7 @@ export const Help = ({ navigation }) => {
 
                     <AppTextInput
                         multiline={true}
+                        textAlignVertical="top"
                         style={styles.formTextarea}
                         placeholder="Send us your questions, feedback or suggestions."
                     />
@@ -145,13 +146,14 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     formTextarea: {
-        padding: 10,
+        padding: 20,
         height: 200,
         marginTop: 20,
+        color: theme.colors.primary,
         backgroundColor: "#F8F7F8",
     },
     formBtn: {
-        marginTop: 30,
+        marginVertical: 30,
     },
     addImageBox: {
         width: 55,
