@@ -14,11 +14,18 @@ import {
     DealInactiveIcon,
 } from "../../assets/icons";
 
+import { Deals } from "../screens/MainApplication/Deals";
 import { Insight, Category, MerchantInformation } from "../screens/MainApplication/Insight";
 import { AccountList, AccountInformation } from "../screens/MainApplication/Accounts";
-import { Deals } from "../screens/MainApplication/Deals";
-import { Article, LinkAccount } from "../screens/MainApplication";
-import { Help, Settings, EditProfile, Notification } from "../screens/MainApplication/Settings";
+import { Article, LinkAccount, Uncategorized, Subscription } from "../screens/MainApplication";
+import {
+    Help,
+    Privacy,
+    Settings,
+    EditProfile,
+    Notification,
+    TermsOfService,
+} from "../screens/MainApplication/Settings";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -54,9 +61,11 @@ const DealNavigation = () => (
 const SettingsNavigation = () => (
     <Stack.Navigator initialRouteName="Settings" headerMode="none">
         <Stack.Screen name="Help" component={Help} />
+        <Stack.Screen name="Privacy" component={Privacy} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
         <Stack.Screen name="Notification" component={Notification} />
+        <Stack.Screen name="TermsOfService" component={TermsOfService} />
     </Stack.Navigator>
 );
 
@@ -99,6 +108,8 @@ const MainApplicationNavigator = () => {
             <Stack.Screen name="Article" component={Article} />
             <Stack.Screen name="Home" component={BottomNavigation} />
             <Stack.Screen name="LinkAccount" component={LinkAccount} />
+            <Stack.Screen name="Subscription" component={Subscription} />
+            <Stack.Screen name="Uncategorized" component={Uncategorized} />
             <Stack.Screen name="Settings" component={SettingsNavigation} />
         </Stack.Navigator>
     );

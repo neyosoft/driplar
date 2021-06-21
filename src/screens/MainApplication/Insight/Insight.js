@@ -62,9 +62,9 @@ export const Insight = ({ navigation }) => {
             case "Miscellaneous":
                 return <MiscellaneousCard onPress={() => navigation.navigate("Category")} />;
             case "Subscriptions":
-                return <SubscriptionsCard onPress={() => navigation.navigate("Category")} />;
+                return <SubscriptionsCard onPress={() => navigation.navigate("Subscription")} />;
             case "Uncategorized":
-                return <UncategorizedCard onPress={() => navigation.navigate("Category")} />;
+                return <UncategorizedCard onPress={() => navigation.navigate("Uncategorized")} />;
 
             default:
                 return <GroceryCard onPress={() => navigation.navigate("Category")} />;

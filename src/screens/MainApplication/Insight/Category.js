@@ -193,40 +193,42 @@ export const Category = ({ navigation }) => {
                 <ShoppingCategoryIcon height={100} style={styles.headerImage} />
             </View>
             <View style={styles.content}>
-                <View style={styles.dateSelectionView}>
-                    <View style={[styles.monthBtn, styles.activeMonth]}>
-                        <AppText variant="medium" style={[styles.monthBtnText, styles.monthBtnActiveText]}>
-                            Aprl
+                <ScrollView>
+                    <View style={styles.dateSelectionView}>
+                        <View style={[styles.monthBtn, styles.activeMonth]}>
+                            <AppText variant="medium" style={[styles.monthBtnText, styles.monthBtnActiveText]}>
+                                Aprl
+                            </AppText>
+                        </View>
+                        <View style={styles.monthBtn}>
+                            <AppText style={styles.monthBtnText}>May</AppText>
+                        </View>
+                        <View style={styles.monthBtn}>
+                            <AppText style={styles.monthBtnText}>2021</AppText>
+                        </View>
+                        <View style={styles.monthBtn}>
+                            <AppText style={styles.monthBtnText}>Custom</AppText>
+                        </View>
+                    </View>
+
+                    <View style={{ marginTop: 20, marginHorizontal: 15 }}>
+                        <AppText variant="medium" style={{ fontSize: 28 }}>
+                            {moneyFormat(146390)}
+                        </AppText>
+                        <AppText style={{ color: theme.colors.label, fontSize: 13, marginTop: 5 }}>
+                            Total spend - Apr 2021
                         </AppText>
                     </View>
-                    <View style={styles.monthBtn}>
-                        <AppText style={styles.monthBtnText}>May</AppText>
-                    </View>
-                    <View style={styles.monthBtn}>
-                        <AppText style={styles.monthBtnText}>2021</AppText>
-                    </View>
-                    <View style={styles.monthBtn}>
-                        <AppText style={styles.monthBtnText}>Custom</AppText>
-                    </View>
-                </View>
 
-                <View style={{ marginTop: 20, marginHorizontal: 15 }}>
-                    <AppText variant="medium" style={{ fontSize: 28 }}>
-                        {moneyFormat(146390)}
-                    </AppText>
-                    <AppText style={{ color: theme.colors.label, fontSize: 13, marginTop: 5 }}>
-                        Total spend - Apr 2021
-                    </AppText>
-                </View>
+                    <ThreeColumnTab
+                        value={selectedTab}
+                        style={styles.columnTab}
+                        onChange={setSelectedTab}
+                        options={["Insights", "Transactions", "Deals"]}
+                    />
 
-                <ThreeColumnTab
-                    value={selectedTab}
-                    style={styles.columnTab}
-                    onChange={setSelectedTab}
-                    options={["Insights", "Transactions", "Deals"]}
-                />
-
-                <ScrollView>{renderContent()}</ScrollView>
+                    {renderContent()}
+                </ScrollView>
             </View>
         </SafeAreaView>
     );

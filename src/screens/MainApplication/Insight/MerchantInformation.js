@@ -20,8 +20,8 @@ export const MerchantInformation = ({ navigation }) => {
 
     const [selected, setSelected] = useState("Insights");
 
-    const renderContent = value => {
-        switch (value) {
+    const renderContent = selected => {
+        switch (selected) {
             case "Insights":
                 return (
                     <ScrollView showsVerticalScrollIndicator={false}>
@@ -139,42 +139,44 @@ export const MerchantInformation = ({ navigation }) => {
                 <SportifyLogo width={70} height={70} style={styles.headerImage} />
             </View>
             <View style={{ flex: 1, backgroundColor: theme.colors.white }}>
-                <View style={styles.dateSelectionView}>
-                    <View style={[styles.monthBtn, styles.activeMonth]}>
-                        <AppText variant="medium" style={[styles.monthBtnText, styles.monthBtnActiveText]}>
-                            Aprl
-                        </AppText>
+                <ScrollView>
+                    <View style={styles.dateSelectionView}>
+                        <View style={[styles.monthBtn, styles.activeMonth]}>
+                            <AppText variant="medium" style={[styles.monthBtnText, styles.monthBtnActiveText]}>
+                                Aprl
+                            </AppText>
+                        </View>
+                        <View style={styles.monthBtn}>
+                            <AppText style={styles.monthBtnText}>May</AppText>
+                        </View>
+                        <View style={styles.monthBtn}>
+                            <AppText style={styles.monthBtnText}>2021</AppText>
+                        </View>
+                        <View style={styles.monthBtn}>
+                            <AppText style={styles.monthBtnText}>Custom</AppText>
+                        </View>
                     </View>
-                    <View style={styles.monthBtn}>
-                        <AppText style={styles.monthBtnText}>May</AppText>
-                    </View>
-                    <View style={styles.monthBtn}>
-                        <AppText style={styles.monthBtnText}>2021</AppText>
-                    </View>
-                    <View style={styles.monthBtn}>
-                        <AppText style={styles.monthBtnText}>Custom</AppText>
-                    </View>
-                </View>
 
-                <View style={styles.analyticsBox}>
-                    <View style={{ padding: 22 }}>
-                        <AppText variant="medium" style={styles.amount}>
-                            {moneyFormat(1400)}
-                        </AppText>
-                        <AppText variant="medium" style={styles.amountDescriptionStyle}>
-                            Current account - 6 secs ago
-                        </AppText>
+                    <View style={styles.analyticsBox}>
+                        <View style={{ padding: 22 }}>
+                            <AppText variant="medium" style={styles.amount}>
+                                {moneyFormat(1400)}
+                            </AppText>
+                            <AppText variant="medium" style={styles.amountDescriptionStyle}>
+                                Current account - 6 secs ago
+                            </AppText>
+                        </View>
                     </View>
-                </View>
 
-                <TwoColumnTab
-                    value={selected}
-                    onChange={setSelected}
-                    style={{ marginHorizontal: 20, marginBottom: 10 }}
-                    options={["Insights", "Transactions"]}
-                />
+                    <TwoColumnTab
+                        value={selected}
+                        onChange={setSelected}
+                        style={{ marginHorizontal: 20, marginBottom: 10 }}
+                        options={["Insights", "Transactions"]}
+                    />
 
-                <ScrollView>{renderContent(selected)}</ScrollView>
+                    {renderContent()}
+                </ScrollView>
             </View>
 
             <BottomSheet backdropComponent={BackdropComponent} ref={bottomSheetRef} index={0} snapPoints={snapPoints}>

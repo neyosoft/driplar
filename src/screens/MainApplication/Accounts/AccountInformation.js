@@ -275,7 +275,7 @@ export const AccountInformation = ({ navigation }) => {
     );
 };
 
-BackdropComponent = props => <BottomSheetBackdrop opacity={0.7} {...props} />;
+const BackdropComponent = props => <BottomSheetBackdrop opacity={0.7} {...props} />;
 
 const styles = StyleSheet.create({
     container: {

@@ -45,11 +45,11 @@ export const Settings = ({ navigation }) => {
                     <AppText variant="medium">Help</AppText>
                     <Icon name="chevron-right" color="#B1AEB8" size={25} />
                 </RectButton>
-                <RectButton style={styles.rowItem}>
+                <RectButton style={styles.rowItem} onPress={() => navigation.navigate("TermsOfService")}>
                     <AppText variant="medium">Terms of service</AppText>
                     <Icon name="chevron-right" color="#B1AEB8" size={25} />
                 </RectButton>
-                <RectButton style={styles.rowItem}>
+                <RectButton style={styles.rowItem} onPress={() => navigation.navigate("Privacy")}>
                     <AppText variant="medium">Privacy policy</AppText>
                     <Icon name="chevron-right" color="#B1AEB8" size={25} />
                 </RectButton>
