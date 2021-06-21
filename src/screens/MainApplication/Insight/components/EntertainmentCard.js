@@ -9,7 +9,7 @@ export const EntertainmentCard = ({ style, onPress }) => (
     <TouchableOpacity onPress={onPress} style={[categoryCardStyle.container, { backgroundColor: "#98BBFF" }, style]}>
         <AppText variant="bold">Entertainment</AppText>
         <View style={categoryCardStyle.iconWrapper}>
-            <EntertainmentCategoryIcon />
+            <EntertainmentCategoryIcon width={60} height={50} />
         </View>
     </TouchableOpacity>
 );
